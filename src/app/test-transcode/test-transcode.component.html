@@ -16,255 +16,39 @@
               <app-uiza-card-header>
                 <div class="row">
                   <div class="col">
-
-                    <h5 class="uiza-card-title">Other Component</h5>
-                    <p class="uiza-card-subtitle">It will show your usage with the period time</p>
+                    <h5 class="uiza-card-title">Test transcode</h5>
+                    <p class="uiza-card-subtitle">Input authen token & excel file</p>
                   </div>
                 </div>
-
               </app-uiza-card-header>
-
               <app-uiza-card-content>
                 <div class="row">
-                  <div class="col-md-6">
-                    <app-uiza-upload-static></app-uiza-upload-static>
-                  </div>
-
-                  <div class="col-md-6">
-
-                    <app-uiza-modal-popup>
-                      <app-uiza-modal-popup-content>
-                        Modal message here
-                      </app-uiza-modal-popup-content>
-                    </app-uiza-modal-popup>
-                  </div>
-                </div>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-
-          <!--<div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <div class="row">
-                  <div class="col">
-
-                    <h5 class="uiza-card-title">Tree View</h5>
-                    <p class="uiza-card-subtitle">It will show your usage with the period time</p>
-                  </div>
-                </div>
-
-              </app-uiza-card-header>
-
-              <app-uiza-card-content>
-                <app-uiza-tree-view></app-uiza-tree-view>
-              </app-uiza-card-content>
-            </app-uiza-card>
-
-          </div>
-
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <div class="row">
-                  <div class="col-md-3">
-
-                    <h5 class="uiza-card-title">Smart From</h5>
-                    <p class="uiza-card-subtitle">It will show your usage with the period time</p>
-                  </div>
-
-                  <div class="col-md-9">
-                    <div class="row">
-                      <div class="uiza-card-button">
-                        <div class="pull-right">
-                          <button type="button" class="btn btn-outline-primary">Primary</button>
-                          <button type="button" class="btn btn-outline-secondary">Secondary</button>
-                          <button type="button" class="btn btn-outline-success">Success</button>
-                          <button type="button" class="btn btn-outline-danger">Danger</button>
-                          <button type="button" class="btn btn-outline-warning">Warning</button>
-                          <button type="button" class="btn btn-outline-info">Info</button>
-                          <button type="button" class="btn btn-outline-light">Light</button>
-                          <button type="button" class="btn btn-outline-dark">Dark</button>
-                        </div>
+                  <div class="col-md-12">
+                    <form>
+                      <div class="form-group row">
+                        <label class="col-md-2">ENV:</label>
+                        <input type="text" class="form-control col-md-10" placeholder="env" [(ngModel)]="setting.env" [ngModelOptions]="{standalone: true}">
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-              </app-uiza-card-header>
-
-              <app-uiza-card-content>
-                <app-uiza-smart-form></app-uiza-smart-form>
-              </app-uiza-card-content>
-            </app-uiza-card>
-
-          </div>
-
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <div class="row">
-                  <div class="col-md-3">
-                    <h5 class="uiza-card-title">Smart table</h5>
-                    <p class="uiza-card-subtitle">It will show your usage with the period time</p>
-                  </div>
-                  <div class="col-md-9">
-                    <div class="uiza-card-button">
-                      <div class="pull-right">
-                        <a class="btn btn-primary btn-sm">
-                          <i class="icon icon-new"></i>
-                          Primary
-                        </a>
-
-                        <button type="button" class="btn btn-secondary btn-sm">Secondary</button>
-                        <button type="button" class="btn btn-success  btn-sm">Success</button>
-                        <button type="button" class="btn btn-danger  btn-sm">Danger</button>
-                        <button type="button" class="btn btn-warning  btn-sm">Warning</button>
-                        <a routerLink="/admin" class="btn btn-info  btn-sm">Admin</a>
+                      <div class="form-group row">
+                        <label class="col-md-2">APP_ID:</label>
+                        <input type="text" class="form-control col-md-10" placeholder="env" [(ngModel)]="setting.app_id" [ngModelOptions]="{standalone: true}">
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-              </app-uiza-card-header>
-
-              <app-uiza-card-content>
-                <app-uiza-smart-table></app-uiza-smart-table>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <div class="row">
-                  <div class="col">
-                    <h5 class="uiza-card-title">Data Usage</h5>
-                    <p class="uiza-card-subtitle">It will show your usage with the period time</p>
-                  </div>
-                  <div class="col-md-5 col-xl-6">
-                    <div class="row">
-                      <div class="col">
-                        <a class="uiza-card-tab-button active">
-                          <i class="icon icon-upload"></i>
-                          <span>Upload</span>
-                        </a>
+                      <div class="form-group row">
+                        <label class="col-md-2">Domain API:</label>
+                        <input type="text" class="form-control col-md-10" placeholder="domain api" [(ngModel)]="setting.domain" [ngModelOptions]="{standalone: true}">
                       </div>
-                      <div class="col">
-                        <a class="uiza-card-tab-button">
-                          <i class="icon icon-url"></i>
-                          <span>ULRS</span>
-                        </a>
+                      <div class="form-group row">
+                        <label class="col-md-2">Authentoken:</label>
+                        <input type="text" class="form-control col-md-10" placeholder="authen token" [(ngModel)]="setting.token" [ngModelOptions]="{standalone: true}">
                       </div>
-                      <div class="col">
-                        <a class="uiza-card-tab-button">
-                          <i class="icon icon-storage"></i>
-                          <span>Storage</span>
-                        </a>
+                      <div class="form-group row">
+                        <label class="col-md-2">File upload:</label>
+                        <input type="file" class="form-control col-md-10" style="display: inline-block;" (change)="onInputFileChange($event)" placeholder="Upload file" accept=".xlsx, .xls, .csv" [ngModelOptions]="{standalone: true}">
                       </div>
-                    </div>
+                      <button type="button" class="btn btn-primary" (click)="uploadExcelFile()" >Upload</button>
+                    </form>
+
                   </div>
-                </div>
-
-
-              </app-uiza-card-header>
-
-              <app-uiza-card-content>
-                <app-uiza-empty-content></app-uiza-empty-content>
-              </app-uiza-card-content>
-            </app-uiza-card>
-
-          </div>
-
-          &lt;!&ndash; Start Demo player LIVE &ndash;&gt;
-          <div class="col-md-4">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <div class="row">
-                  <div class="col">
-                    <h5 class="uiza-card-title">Player LIVE</h5>
-                    <p class="uiza-card-subtitle">Demo player for live</p>
-                  </div>
-                </div>
-              </app-uiza-card-header>
-
-              <app-uiza-card-content>
-                <div class="uiza-card-content">
-                  <app-uiza-player [options]="{
-                ratio: '16:9',
-                streamType: 'url',
-                url: 'https://vm2.dashif.org/livesim/testpic_2s/Manifest.mpd'
-              }">
-                    &lt;!&ndash;streamType: 'live',&ndash;&gt;
-                    &lt;!&ndash;appId: '4c273af2724f45738693ab682927acb2',&ndash;&gt;
-                    &lt;!&ndash;entityId: 'c7e97d37-a99c-4625-bbd7-2f35cf71a9a9',&ndash;&gt;
-                    &lt;!&ndash;streamName: 'live-ytb',&ndash;&gt;
-                    &lt;!&ndash;region: 'ap-southeast-1'&ndash;&gt;
-                  </app-uiza-player>
-                </div>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-          &lt;!&ndash; End Demo player LIVE &ndash;&gt;
-
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <div class="row">
-                  <div class="col">
-                    <h5 class="uiza-card-title">Color card</h5>
-                    <p class="uiza-card-subtitle">This is color card for notice information</p>
-                  </div>
-                </div>
-              </app-uiza-card-header>
-
-              <app-uiza-card-content>
-                <div class="uiza-card-content">
-                  <div class="row">
-                    <ng-container *ngFor='let source of sourceDataCard'>
-                      <uiza-card-color class="col-md-3" [source]="source"></uiza-card-color>
-                    </ng-container>
-                  </div>
-                </div>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <h5 class="uiza-card-title">Subscription</h5>
-                <p class="uiza-card-subtitle">Subscription component : app-uiza-subscription-table </p>
-              </app-uiza-card-header>
-              <app-uiza-card-content>
-                <app-uiza-subscription-table></app-uiza-subscription-table>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <div class="row">
-                  <div class="col">
-                    <h5 class="uiza-card-title">Chart JS</h5>
-                    <p class="uiza-card-subtitle">This is chart generate from chart.js</p>
-                  </div>
-                </div>
-              </app-uiza-card-header>
-
-              <app-uiza-card-content>
-                <div class="uiza-card-content">
-                  <div class="row">
-                    <ng-container *ngFor="let setting of settingsChart">
-                      <uiza-chart-js class="col-xl-6" [settings]="setting"></uiza-chart-js>
-                    </ng-container>
-                  </div>
-                  <div class="row">
-                    <ng-container>
-                      <uiza-d3-js></uiza-d3-js>
-                    </ng-container>
-                  </div>
-
                 </div>
               </app-uiza-card-content>
             </app-uiza-card>
@@ -275,106 +59,19 @@
               <app-uiza-card-header>
                 <div class="row">
                   <div class="col">
-                    <h5 class="uiza-card-title">Table head color</h5>
-                    <p class="uiza-card-subtitle">This is header with color for table</p>
+                    <h5 class="uiza-card-title">List entity</h5>
                   </div>
                 </div>
               </app-uiza-card-header>
-
               <app-uiza-card-content>
-                <div class="uiza-card-content">
-                  <div class="row">
-                    <ng-container *ngFor="let source of sourceHeader">
-                      <uiza-table-head-color class="col-xl-12 mb-3" [source]="source"></uiza-table-head-color>
-
-                    </ng-container>
+                <div class="row">
+                  <div class="col-md-12">
+                    list entity
                   </div>
-
                 </div>
               </app-uiza-card-content>
             </app-uiza-card>
           </div>
-
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <h5 class="uiza-card-title">Square Box</h5>
-                <p class="uiza-card-subtitle">Square Box component : app-uiza-square-box </p>
-              </app-uiza-card-header>
-              <app-uiza-card-content>
-                <app-uiza-square-box></app-uiza-square-box>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <h5 class="uiza-card-title">Square Box</h5>
-                <p class="uiza-card-subtitle">Square Box component : app-uiza-square-box </p>
-              </app-uiza-card-header>
-              <app-uiza-card-content>
-                <ng-container *ngFor="let item of sourceNoticeColor">
-                  <uiza-notice-label [source]="item"></uiza-notice-label>
-                </ng-container>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <h5 class="uiza-card-title">Date Picker</h5>
-                <p class="uiza-card-subtitle">Date Picker component : app-uiza-date-picker </p>
-              </app-uiza-card-header>
-              <app-uiza-card-content>
-                <app-uiza-date-picker></app-uiza-date-picker>
-                <app-uiza-date-picker-advance></app-uiza-date-picker-advance>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-
-          <div class="col-md-6">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <h5 class="uiza-card-title">Card input</h5>
-                <p class="uiza-card-subtitle">Use for card charge</p>
-              </app-uiza-card-header>
-              <app-uiza-card-content>
-                <app-uiza-card-list></app-uiza-card-list>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-          <div class="col-md-12">
-            <app-uiza-request-content>
-              <app-uiza-card-header>
-                <p class="request-content-title">Request</p>
-                <span class="badge badge-pill request-content-subtitle-method"> POST</span>
-                <span class="request-content-subtitle">Request component : app-uiza-request-content </span>
-              </app-uiza-card-header>
-            </app-uiza-request-content>
-          </div>
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <h5 class="uiza-card-title">Permission List</h5>
-                <p class="uiza-card-subtitle">Permission List : app-uiza-permission-list </p>
-              </app-uiza-card-header>
-              <app-uiza-card-content>
-                <app-uiza-permission-list></app-uiza-permission-list>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>
-          <div class="col-md-12">
-            <app-uiza-card>
-              <app-uiza-card-header>
-                <h5 class="uiza-card-title">Data Plus</h5>
-                <p class="uiza-card-subtitle">Data Plus component : app-uiza-data-plus </p>
-              </app-uiza-card-header>
-              <app-uiza-card-content>
-                <app-uiza-data-plus></app-uiza-data-plus>
-              </app-uiza-card-content>
-            </app-uiza-card>
-          </div>-->
 
 
         </div>
