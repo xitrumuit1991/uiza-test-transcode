@@ -1,0 +1,34 @@
+@import "../../../../../assets/style/index";
+
+.uiza-top-menu-setting {
+  .uiza {
+    &-customer-dropdown {
+      padding-top: convert-px-rem(10);
+    }
+    &-customer-logo {
+      img {
+        width: convert-px-rem(40);
+        height: convert-px-rem(40);
+        border-radius: 50%;
+      }
+    }
+    &-customer-info {
+      font-size: $font-12;
+      margin: convert-px-rem(5) 0 0 convert-px-rem(-10);
+      &-name {
+        margin: 10px;
+        font-size: $font-16;
+        color: $color-athens-gray;
+        width: 100%;
+        // overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      &-setting {
+        margin: 0;
+        color: $color-athens-gray;
+        opacity: 0.8;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,15 @@
+@import "../../../../assets/style/index";
+
+.uiza-top-menu {
+  box-shadow: 0 convert-px-rem(2) convert-px-rem(6) 0 rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  height: convert-px-rem(60);
+  padding-top: convert-px-rem(10);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  &-padding {
+    height: convert-px-rem(60 );
+  }
+}

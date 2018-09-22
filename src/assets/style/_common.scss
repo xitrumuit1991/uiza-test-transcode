@@ -1,0 +1,348 @@
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: $font-12;
+    line-height: convert-px-rem(14);
+    color: $color-text;
+    background: $color-catskill-white;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    &.display-inline {
+        li {
+            display: inline-block;
+            margin-right: convert-px-rem(10);
+            &:last-child {
+                margin-right: 0
+            }
+        }
+    }
+}
+
+a {
+    color: inherit;
+    &:hover {
+        text-decoration: none;
+        color: $color-purple-heart;
+    }
+}
+
+.text {
+    &-12 {
+        font-size: $font-12;
+        line-height: convert-px-rem(15);
+    }
+    &-14 {
+        font-size: $font-14;
+        line-height: convert-px-rem(18);
+    }
+    &-16 {
+        font-size: $font-14;
+        line-height: convert-px-rem(22);
+    }
+    &-18 {
+        font-size: $font-18;
+        line-height: convert-px-rem(24);
+    }
+    &-20 {
+        font-size: $font-20;
+        line-height: convert-px-rem(26);
+    }
+    &-22 {
+        font-size: $font-22;
+        line-height: convert-px-rem(30);
+    }
+    &-white {
+        color: $color-white;
+    }
+    &-purble {
+        color: $color-purple-heart;
+    }
+    &-center {
+        text-align: center;
+    }
+    &-left {
+        text-align: left;
+    }
+    &-right {
+        text-align: right;
+    }
+    &-primary {
+        color: $color-purple-heart !important;
+    }
+    &-danger {
+        color: $color-monza !important;
+    }
+    &-success {
+        color: $color-limeade !important;
+    }
+    &-info {
+        color: $color-malibu !important;
+    }
+}
+
+.icon {
+    font-size: $font-20;
+}
+
+.backgroud {
+    &-purple-gradient {
+        background: #3023ae;
+        background: -moz-linear-gradient(90deg, #3023ae 0%, #c86dd7 100%);
+        background: -webkit-linear-gradient(90deg, #3023ae 0%, #c86dd7 100%);
+        background: linear-gradient(90deg, #3023ae 0%, #c86dd7 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColorstr='#c86dd7', GradientType=1);
+    }
+}
+
+.form-control {
+    font-size: convert-px-rem(12);
+    padding: convert-px-rem(8) convert-px-rem(10);
+}
+
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #B1BBC1;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #B1BBC1;
+}
+
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #B1BBC1;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #B1BBC1;
+}
+
+@mixin primaryBgcolor {
+    color: $color-white !important;
+    background-color: $color-purple-heart;
+    border-color: $color-purple-heart;
+    &:hover {
+        background-color: $color-purple-heart-light;
+        border-color: $color-purple-heart-light;
+    }
+}
+
+.badge {
+    padding: convert-px-rem(5) convert-px-rem(15) !important;
+    font-weight: 300;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: $color-white;
+    border-color: $color-purple-heart;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(113, 47, 214, 0.27);
+}
+
+.toast {
+    padding: convert-px-rem(10) convert-px-rem(10) convert-px-rem(10) convert-px-rem(50)!important;
+    border-radius: convert-px-rem(50)!important;
+    box-shadow:0!important;
+    &-close-button {
+        position: absolute!important;
+        top: 50%!important;
+        right: 3%!important;
+        transform: translateY(-50%)!important;
+    }
+}
+
+
+
+.toast,
+.bg,
+a.btn,
+.badge,
+.btn {
+    padding-left: convert-px-rem(20);
+    padding-right: convert-px-rem(20);
+    .icon {
+        font-size: inherit;
+        margin-right: convert-px-rem(4);
+        display: inline-block;
+        vertical-align: middle;
+    }
+    &-sm {
+        .icon {
+            height: convert-px-rem(16);
+        }
+    }
+    &-default.active {
+        color: $color-purple-heart!important;
+    }
+    &-outline {
+        &-primary {
+            color: $color-purple-heart !important;
+            border-color: $color-purple-heart !important;
+            &:hover {
+                color: $color-white !important;
+                background-color: $color-purple-heart!important;
+            }
+        }
+        &-danger {
+            color: $color-monza !important;
+            border-color: $color-monza !important;
+            &:hover {
+                color: $color-white !important;
+                background-color: $color-monza!important;
+            }
+        }
+        &-success {
+            color: $color-limeade !important;
+            border-color: $color-limeade !important;
+            &:hover {
+                color: $color-white !important;
+                background-color: $color-limeade!important;
+            }
+        }
+        &-info {
+            color: $color-malibu !important;
+            border-color: $color-malibu !important;
+            &:hover {
+                color: $color-white !important;
+                background-color: $color-malibu;
+            }
+        }
+        &-light {
+            color: $color-regent-gray!important;
+            border-color: $color-regent-gray!important;
+        }
+        &-warning {
+            &:hover {
+                color: $color-white !important;
+            }
+        }
+    }
+    &-primary {
+        color: $color-white !important;
+        background-color: $color-purple-heart !important;
+        border-color: $color-purple-heart !important;
+        &:hover {
+            background-color: $color-purple-heart-light!important;
+            border-color: $color-purple-heart-light!important;
+        }
+    }
+    &-danger {
+        color: $color-white!important;
+        background-color: $color-monza!important;
+        border-color: $color-monza!important;
+        &:hover {
+            background-color: $color-monza-light!important;
+            border-color: $color-monza-light!important;
+        }
+    }
+    &-success {
+        color: $color-white!important;
+        background-color: $color-limeade!important;
+        border-color: $color-limeade!important;
+        &:hover {
+            background-color: $color-limeade-light!important;
+            border-color: $color-limeade-light!important;
+        }
+    }
+    &-info {
+        color: $color-white!important;
+        background-color: $color-malibu!important;
+        border-color: $color-malibu!important;
+        &:hover {
+            background-color: $color-malibu-light!important;
+            border-color: $color-malibu-light!important;
+        }
+    }
+    &-warning {
+        color: $color-white!important;
+        &:hover{
+          color: $color-white!important;
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.no-border-left {
+    border-left: none !important;
+}
+
+.no-border-right {
+    border-left: none !important;
+}
+
+.no-border-top {
+    border-left: none !important;
+}
+
+.no-border-bottom {
+    border-left: none !important;
+}
+
+.element-box {
+    background: $color-white;
+    border-radius: convert-px-rem(4);
+    box-shadow: 0 0 40px rgba(0, 0, 0, .1);
+}
+
+.uiza-body-content {
+    width: 82%;
+    float: right;
+}
+
+.pull-right {
+    float: right;
+}
+
+@media screen and (max-width: 1280px) {
+    html {
+        width: 1280px !important;
+    }
+}
+
+$sizes: 20 30 40 50 60 70 80 90 100 110 120 130 140 150 200 250 300 320 330 350 400;
+@each $size in $sizes {
+    .col-limit-length-#{$size} {
+        width: #{$size}px;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+.modal-center {
+    margin: 0 auto;
+}
+@media (min-width: 576px){
+    .modal-lg-social{
+        max-width: 600px;
+    }
+}
+@media (min-width: 992px){
+  .modal-lg-social{
+    max-width: 800px;
+  }
+}
+.modal-lg-social{
+  max-width: 1000px;
+  ul.list-destination{
+    max-height: 70vh;
+    overflow-y: scroll;
+  }
+  //ul.list-destination::-webkit-scrollbar {
+  //  display: none;
+  //}
+}

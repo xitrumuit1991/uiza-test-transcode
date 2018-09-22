@@ -1,0 +1,129 @@
+@import "../../../../assets/style/index";
+
+.subscription-table {
+  .col {
+    max-width: convert-px-rem(240);
+  }
+  .plan-table {
+    height: 100%;
+    max-width: convert-px-rem(240);
+    border: convert-px-rem(1) solid #F2F2F2;
+    box-shadow: 0 convert-px-rem(2) convert-px-rem(6) 0 rgba(0, 0, 0, 0.12);
+    position: relative;
+    .feature-button {
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      margin-bottom: convert-px-rem(25);
+      .btn-choose {
+        margin: 0 auto;
+        border: none;
+        border-radius: convert-px-rem(4);
+        cursor: pointer;
+        height: convert-px-rem(30);
+        width: convert-px-rem(104);
+
+        .lbl-btn-choose-plan {
+          color: #FFFFFF;
+          font-size: 12px;
+        }
+      }
+      .btn-choose-plan {
+        background-color: $color-purple-heart;
+      }
+      .btn-contact {
+        background-color:  #489BFC;
+      }
+      .btn-disabled {
+        opacity: 0.3;
+        &:hover {
+          cursor: default;
+        }
+      }
+    }
+
+    .display-inline {
+      display: inline-block;
+    }
+
+    .header-title-container {
+      background-color: #FAFAFA;
+      width: 100%;
+      height: convert-px-rem(50);
+      text-align: center;
+      .header-title {
+        color: #4A616B;
+        font-size: convert-px-rem(14);
+        font-weight: 400;
+        line-height: convert-px-rem(50);
+      }
+    }
+
+    .plan-detail-container {
+      min-height: convert-px-rem(350);
+
+      .plan-detail-header {
+        height: convert-px-rem(77);
+        font-size: convert-px-rem(16);
+        line-height: convert-px-rem(20);
+        text-align: center;
+        margin-top: convert-px-rem(15);
+
+        .plan-detail-price {
+          color: $color-purple-heart;
+          font-size: convert-px-rem(20);
+          line-height: convert-px-rem(15);
+        }
+
+        .plan-detail-duration {
+          color: #152935;
+          font-size: convert-px-rem(12);
+          line-height: convert-px-rem(15);
+          font-weight: 200;
+          margin-bottom: 0 !important;
+        }
+
+        .plan-detail-benefit {
+          color: #1E313C;
+          font-size: convert-px-rem(14);
+          line-height: convert-px-rem(18);
+          margin-bottom: 0 !important;
+        }
+
+        .bold {
+          font-weight: 500;
+          margin-left: convert-px-rem(5);
+        }
+
+      }
+
+      .plan-detail-body {
+        width: max-content;
+        margin: 0 auto;
+      }
+      .feature {
+        text-align: left;
+        width: fit-content;
+
+        .feature-title {
+
+        }
+        .feature-icon {
+          margin: convert-px-rem(5);
+        }
+        .active-icon {
+          color: #82B553;
+        }
+        .white-icon {
+          color: $color-white;
+        }
+      }
+
+    }
+
+  }
+
+}
+

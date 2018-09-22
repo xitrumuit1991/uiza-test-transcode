@@ -1,0 +1,33 @@
+<section class="uiza-smart-form">
+
+  <div class="row">
+    <div class="input-container">
+    <ng-container *ngFor='let card of source'>
+
+
+        <div class="col-xl-6 item">
+          <div class="item-content">
+            <img class="card-image" [src]="'../../../assets/img/' + imageSource[card.brand]">
+            <span class="card-info">********{{card.last4}}</span>
+          </div>
+        </div>
+        <div class="col-xl-4 item">
+          <div class="item-content">
+            <span class="card-info">{{card.exp_month}}/{{card.exp_year}}</span>
+          </div>
+        </div>
+        <div class="col-xl-2 item">
+          <div class="item-content">
+            <span>
+              <i class="icon-edit"></i>
+              <i class="icon-del"></i>
+          </span>
+          </div>
+        </div>
+
+
+    </ng-container>
+    <!--<div class="item-container"></div>-->
+    </div>
+  </div>
+</section>

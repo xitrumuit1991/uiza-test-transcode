@@ -1,0 +1,11 @@
+<ng-container *ngFor='let data of settings.values'>
+
+  <label *ngIf="!data.hide" class="uiza-checkbox d-inline-flex {{data.col}} {{settings.col}}">
+    <input type="checkbox" [attr.name]="name || 'uiza'" checked="{{correctChecked(data[settings.valueKey ||'value'])}}" [value]="data[settings.valueKey ||'value']" (change)='onChange($event)'>
+    <span class="checkmark"></span>
+    <i *ngIf='data.icon' class="{{data.icon}}"></i>
+    <span class='label {{settings.label}}' style="-webkit-box-orient: vertical" *ngIf='data.title'>{{data[settings.titleKey ||'title']}}</span>
+    <span class='label' *ngIf="data.titleNumberData"> {{data.titleNumberData}}</span>
+  </label>
+
+</ng-container>

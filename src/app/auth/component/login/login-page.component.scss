@@ -1,0 +1,284 @@
+/****** General Styles *********/
+
+
+/****** Container *********/
+#container {
+  width:100%;
+  z-index: 1;
+}
+
+/****** Left container *********/
+#div-left-container {
+  float: left;
+  width: 100%;
+  position:relative;
+  left: -15px;
+  z-index: 10;
+  background-image: url(/assets/img/app-background-blu.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+#img-logo {
+  position: absolute;
+  left: 8.33333%;
+  top: 10px;
+}
+
+#img-background {
+  width: 100%;
+  min-width: 200px;
+  max-width: 600px;
+  height: inherit;
+}
+
+/****** Image text *********/
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img-text-title {
+  width: 100%;
+  color: #FFFFFF;
+  font-family: "IBM Plex Sans";
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 30px;
+  text-align: center;
+  margin-top: -41px;
+  position: relative;
+  margin: auto;
+  cursor: default !important;
+}
+
+.img-text-body {
+  /*height: 56px;	*/
+  width: 415px;
+  opacity: 0.8;
+  color: #FFFFFF;
+  font-family: "IBM Plex Sans";
+  font-size: 17px;
+  font-weight: 100;
+  line-height: 23px;
+  text-align: center;
+  position: relative;
+  margin: auto;
+  cursor: default !important;
+}
+
+/****** Right container *********/
+#right-container {
+  float: right;
+  width: 100%;
+  position:relative;
+  height:100vh;
+}
+.display-inline {
+  display: inline-block;
+}
+.btn-back {
+  height: 14px;
+  width: 18px;
+  position: absolute;
+  left: 80px;
+  top: 25px;
+  cursor: pointer !important;
+}
+.lbl-already-have-an-work {
+  margin-top: 15px;
+  height: 18px;
+  color: #2E2934;
+  font-family: "IBM Plex Sans";
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 18px;
+  margin-right: 16px;
+  cursor: pointer !important;
+}
+
+.btn-sigin {
+  margin-top: 15px;
+  height: 42px;
+  width: 155px;
+  border: 1px solid #722FD6;
+  border-radius: convert-px-rem(4);
+  cursor: pointer !important;
+  background-color: #FFFFFF;
+}
+.lbl-workspace {
+  margin: auto;
+  height: 18px;
+  width: 117.1px;
+  color: #722FD6;
+  font-family: "IBM Plex Sans";
+  font-size: 14px;
+  line-height: 18px;
+}
+.div-right-center {
+  position: absolute;
+  width: 56%;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+}
+.div-right-center .status-icon {
+  position: relative;
+  margin-top: -38px;
+  margin-right: 2%;
+  padding: 4px;
+  width: 100%;
+  min-width: 30px;
+  max-width: 600px;
+  height: inherit;
+  z-index: 3;
+  float: right;
+}
+.div-right-center .notification-success {
+  border: 1px solid #AADCFF;
+  border-radius: convert-px-rem(4);
+  background-color: #D2EEF5;
+}
+
+.div-right-center .notification-success-text {
+  color: #293B46;
+  font-family: "IBM Plex Sans";
+  font-size: 13px;
+  line-height: 17px;
+  text-align: left;
+  margin: auto;
+  padding: 10px;
+}
+.div-right-center .lbl-created-your-workspace {
+  height: 32px;
+  width: auto;
+  color: #152935;
+  font-family: "IBM Plex Sans";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  cursor: default !important;
+}
+.div-right-center .lbl-created-your-workspace-test {
+  height: 32px;
+  width: 185px;
+  color: #7420DF;
+  font-family: "IBM Plex Sans";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+}
+.div-right-center .lbl-input-email {
+  height: 15px;
+  width: auto;
+  color: #2E2934;
+  font-family: "IBM Plex Sans";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+}
+.div-right-center .input-workspace-name {
+  padding-left: 20px;
+  height: 50px;
+  width: 100%;
+  border: 1px solid #BBC1C5;
+  border-radius: convert-px-rem(4);
+  position: relative;
+  z-index: 1;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 13px;
+  color: #AFB5B9;
+  opacity: 1; /* Firefox */
+}
+.btn-create-workspace {
+  min-width: 160px;
+  padding: 20px;
+  border: none;
+  border-radius: convert-px-rem(4);
+  background-color: #722FD6;
+  margin-top: 30px;
+  cursor: pointer !important;
+}
+.div-right-center .lbl-btn-create-workspace {
+  height: 23px;
+  width: auto;
+  color: #FFFFFF;
+  font-family: "IBM Plex Sans";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  margin: auto;
+  vertical-align: middle;
+}
+
+/****** Footer container *********/
+.div-footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 42px;
+  background-color: #F6F5F5;
+  z-index: 3;
+}
+.div-footer-container .lbl-container {
+  float: right;
+  height: 30px;
+  color: #7F7E7F;
+  font-family: "IBM Plex Sans";
+  font-size: 12px;
+  font-weight: 200;
+  line-height: 15px;
+}
+.div-footer-container .lbl-footer-item {
+  position: relative;
+  top: 50%;
+  padding-right: 15px;
+}
+.div-footer-container .lbl-footer-item:hover {
+  cursor: pointer !important;
+}
+
+a {
+  color: #8F64D9 !important;
+}
+.btn-create-workspace-container {
+  position: relative;
+  height: 60px;
+  width: 84%;
+  margin-top: 6%;
+}
+.icon-create-workspace-loading {
+  position: relative;
+  vertical-align: middle;
+  color: white;
+}
+.icon-create-workspace-loading:hover {
+  cursor: pointer;
+}
+.lbl-fail-notification {
+  color: #E11128;
+  font-family: "IBM Plex Sans";
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 10px;
+}
+.div-fail-notification {
+  border: 1px solid #E0182D !important;
+  border-radius: convert-px-rem(4) !important;
+}
+
+.lbl-forget-password {
+  height: 18px;
+  color: #A3A9AD;
+  font-family: "IBM Plex Sans";
+  font-size: 14px;
+  line-height: 18px;
+  position: relative;
+  margin-top: 45px;
+}

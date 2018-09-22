@@ -1,0 +1,35 @@
+.square-box{
+  button{
+    border-color:#722FD6;
+    background: #fff ;
+    color:#722FD6 !important;
+    &:hover{
+      background:#722FD6;
+      color:#ffffff !important;
+    }
+  }
+
+  .select-box{
+    padding: 45px 0px 27px 0px;
+    border-radius: convert-px-rem(4);
+    background-color: #FFFFFF;
+    box-shadow: 0 5px 15px 0 rgba(51,59,74,0.03);
+    border: 1px solid #F5F2F2;
+    .title{
+      color: #383A42;	font-family: "IBM Plex Sans";	font-size: 14px;	font-weight: 500;	line-height: 18px;
+    }
+    .sub-title{
+      height: 36px;
+      color: #9D9FA7;	font-family: "IBM Plex Sans";	font-size: 12px;	line-height: 15px;
+    }
+    &:hover{
+      box-sizing: border-box;
+      border: 1px solid #F5F2F2;
+      background-color: rgba(251,251,251,0.85);
+    }
+  }
+  .flow-root{
+    display: flow-root !important;
+  }
+  .height-60{height: 60px;}
+}

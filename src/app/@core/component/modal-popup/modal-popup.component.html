@@ -1,0 +1,30 @@
+<ng-template #templateModal>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{modalObject.title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body pd-20 text-center" [ngClass]="{'text-center': !!!modalObject.contentFloatLeft}" >
+      {{modalObject.message}}
+      <ng-content select="app-uiza-modal-popup-content"></ng-content>
+    </div>
+    <div class="modal-footer" *ngIf="!!!modalObject.hideFooter">
+      <div class="text-center w-100">
+        <button *ngFor="let btn of modalObject.buttons" class="{{btn.class}} mr-right-10" (click)="btn.action()">
+          {{btn.title}}
+        </button>
+        <button type="button" class="btn btn-secondary mr-right-10" (click)="modalObject.cancel()">
+          {{modalObject.textCancel || 'Cancel'}}
+        </button>
+        <button *ngIf="modalObject.confirm"  type="button" class="btn btn-primary" (click)="modalObject.confirm()">
+          {{modalObject.textConfirm || 'Submit'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!-- Modal -->
+
+<button *ngIf="modalObject.showBtnDemo" class="btn btn-primary btn-sm mr-bottom-20" (click)="modalObject.show()">Click show modal popup</button>

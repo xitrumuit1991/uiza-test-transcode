@@ -1,0 +1,45 @@
+@import "../../../../assets/style/index";
+
+.uiza {
+  &-left-bar {
+    top:60px;
+    bottom: 0px;
+    position: fixed;
+    width: 18%;
+    background: $color-white;
+    display: flex;
+    flex-direction: column;
+    height: 100%;;
+    padding: convert-px-rem(32);
+    box-shadow: 0 convert-px-rem(2) convert-px-rem(25) 0 rgba(44, 52, 69, 0.1);
+    color: $color-regent-gray;
+    overflow-y: auto;
+    padding-bottom: convert-px-rem(100);
+    ul li {
+      line-height: convert-px-rem(35);
+      vertical-align: middle;
+      display: block;
+
+      a.active {
+        color: $color-purple-heart;
+
+      }
+    }
+    .icon {
+      margin-right: convert-px-rem(10);
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .group-title {
+      color: $color-regent-gray;
+      opacity: 0.6;
+    }
+    .sub-menu {
+      margin-left: convert-px-rem(32);
+    }
+
+  }
+}
+
+
+

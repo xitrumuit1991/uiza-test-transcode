@@ -1,0 +1,102 @@
+@import "../../../assets/style/index";
+@font-face { font-family: "IBM Plex Mono"; src: url('../../../assets/fonts/ibmplexsans/IBMPlexMono-Regular.ttf'); }
+
+.progress{
+  height: 9px;
+  background-color: #F3F2F2;
+}
+.progress-bar{
+  border-radius: 2px 0 0 2px;
+  background: linear-gradient(90deg, #3023AE 0%, #C86DD7 100%);
+}
+.request-content-data{
+  margin-top:6px;
+  p{
+    color: #6B6E70;
+    font-size: 12px;
+    line-height: 30px;
+    margin-bottom: 0px;
+  }
+  .text-content{
+    //border-radius: 2px;
+    padding: 10px 20px 10px;
+    background-color: #F0F3F7;
+    height: 240px;
+    overflow: auto;
+    border: none;
+    font-family: "IBM Plex Mono";
+  }
+}
+.header-data-request{
+  padding-top:12px;
+  color: #4A4952;
+  font-size: 14px;
+  line-height: 18px;
+  height: 38px;
+}
+.hljs{
+  background: none;
+  font-family: "IBM Plex Mono";
+  color: #6B6E70;
+  font-size: 12px;
+  line-height: 30px;
+  padding: 0px;
+  ::ng-deep &-name{
+    color: #4396d8;
+  }
+  ::ng-deep &-attr{
+    color: #cc9176;
+  }
+}
+
+.uiza-card {
+  ::ng-deep &-selection {
+    display: flex;
+    padding-bottom: 30px;
+  }
+  ::ng-deep &-tab-button {
+
+    padding: convert-px-rem(10) convert-px-rem(10) convert-px-rem(14);
+    top: convert-px-rem(10);
+    cursor: pointer;
+    white-space: nowrap;
+    * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .icon{
+      margin-right: convert-px-rem(10);
+    }
+    span {
+      font-size: convert-px-rem(14);
+    }
+    @mixin hover {
+      border-bottom: convert-px-rem(3) solid purple;
+      color: $color-purple-heart;
+      * {
+        color: $color-purple-heart;
+      }
+    }
+    &.active {
+      @include hover;
+    }
+    &:hover {
+      @include hover;
+    }
+  }
+
+}
+.icon-check{
+  color: $color-green;
+  padding-left: 10px;
+}
+.icon-close{
+  color: #FF0000;
+  padding-left: 10px;
+}
+.icon-copy {
+  cursor: pointer;
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}

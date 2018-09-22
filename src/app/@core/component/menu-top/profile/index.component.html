@@ -1,0 +1,33 @@
+<app-uiza-modal-popup [modalObject]="popUpComponent">
+  <app-uiza-modal-popup-content>
+
+  </app-uiza-modal-popup-content>
+</app-uiza-modal-popup>
+<section class="uiza-top-menu-profile">
+  <div class="row">
+    <div class="col-md-2">
+      <a class="hover-opacity" href="https://docs.uiza.io/" title='Documentation' target="_blank"><i class="icon icon-docs"></i></a>
+    </div>
+    <!-- <div class="col-md-2">
+      <i class="icon icon-notice"></i>
+    </div> -->
+    <div class="col-xl-6 col-md-3 pd-left-0" >
+      <div class="profile pointer" (click)="profile()">
+        <span class="avatar">
+          <img src="{{avatar}}" />
+        </span>
+        <label class="fullname pointer" style="line-height: 24px;">
+          {{displayName|limitString: 12}}
+          <i class="icon icon-arrow-dowm"></i>
+        </label>
+        <ul class="list">
+          <li>Profile</li>
+          <li>Logout</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <a class="hover-opacity" href="javascript:void(0)" (click)="logOut()" title="Logout"><i class="icon icon-1-t-logout pointer"></i></a>
+    </div>
+  </div>
+</section>

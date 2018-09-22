@@ -1,0 +1,36 @@
+@import "../../../../assets/style/index";
+
+/deep/ .theme-green .bs-datepicker-head{
+  background-color: $color-purple-heart-light;
+}
+/deep/ .theme-green .bs-datepicker-body table {
+  td span.selected{
+  background-color: $color-purple-heart-light;
+  }
+  td.week span{
+    color: $color-purple-heart-light;;
+  }
+}
+/deep/ .theme-green .bs-datepicker-container .bs-calendar-container > div {
+  display: flex;
+}
+.calendar-bs{
+  position: absolute;
+  left:29px;
+  top: 10px;
+  font-size: 14px;
+}
+
+.caret-bs{
+  position: absolute;
+  right: 26px;
+  top: 10px;
+}
+.date-picker{
+  position: relative;
+}
+.bspicker{
+  padding-left: 38px;
+  padding-right: 30px;
+
+}

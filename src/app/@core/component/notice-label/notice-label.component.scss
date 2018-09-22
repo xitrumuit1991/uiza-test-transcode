@@ -1,0 +1,77 @@
+.notice-container {
+  border-radius: convert-px-rem(4);
+
+  .notice-title {
+    color: #4B4A53;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+  .button-container {
+    text-align: right;
+  }
+  .btn-edit {
+    height: 28px;
+    width: 97px;
+    .btn-edit-lbl {
+      color: #FFFFFF;
+      line-height: 15px;
+    }
+    position: relative;
+  }
+  .notice-message {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    color: #FFFFFF;
+    font-size: 12px;
+  }
+}
+.notice-primary {
+  border: 1px solid rgba(114, 47, 214, 0.3);
+  background-color: rgba(114, 47, 214, 0.05);
+  .btn-edit {
+    background-color: rgba(114, 47, 214, 1);
+  }
+}
+.notice-secondary {
+  border: 1px solid rgba(108, 117, 125, 0.3);
+  background-color: rgba(108, 117, 125, 0.05);
+  .btn-edit {
+    background-color: rgba(108, 117, 125, 1);
+  }
+}
+.notice-success {
+  border: 1px solid rgba(109, 195, 45, 0.3);
+  background-color: rgba(109, 195, 45, 0.05);
+  .btn-edit {
+    background-color: rgba(109, 195, 45, 1);
+  }
+}
+.notice-warning {
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  background-color: rgba(255, 193, 7, 0.05);
+  .btn-edit {
+    background-color: rgba(255, 193, 7, 1);
+  }
+}
+.notice-process {
+  border: 1px solid rgba(245, 182, 124, 0.3);
+  background-color: rgba(245, 182, 124, 0.05);
+  .btn-edit {
+    background-color: rgba(245, 182, 124, 1);
+  }
+}
+.notice-danger {
+  border: 1px solid rgba(232, 135, 135, 0.3);
+  background-color: rgba(232, 135, 135, 0.05);
+  .btn-edit {
+    background-color: rgba(232, 135, 135, 1);
+  }
+}
+.notice-admin {
+  border: 1px solid rgba(108, 213, 225, 0.3);
+  background-color: rgba(108, 213, 225, 0.05);
+  .btn-edit {
+    background-color: rgba(108, 213, 225, 1);
+  }
+}

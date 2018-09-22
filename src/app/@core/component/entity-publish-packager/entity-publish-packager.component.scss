@@ -1,0 +1,32 @@
+
+.item-publish{
+  //border: 1px solid transparent;
+  border-radius: convert-px-rem(4);
+  background-color: #FFFFFF;
+  //margin: 0 26px;
+  position: relative;
+  text-align: center;
+  border: 1px solid #E6E6E6;
+  padding: 30px;
+  &.active{
+    border: 1px solid #8044DA;
+  }
+  .block-title{
+    color: #515659;	font-family: "IBM Plex Sans";
+    font-size: 12px;	font-weight: 500;
+    line-height: 15px;
+    margin: 20px 0 10px 0;
+  }
+  img{
+    height: 125px;
+    width: auto;
+  }
+  .check{
+    top:7px;
+    right: 7px;
+    position: absolute;
+  }
+  .full-width {
+    width: 100%;
+  }
+}

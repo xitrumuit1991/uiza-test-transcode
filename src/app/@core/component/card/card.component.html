@@ -1,0 +1,9 @@
+<section class="uiza-card" [ngStyle]="{'height': settings.forceMaxHeight ? '100%' : 'auto'}">
+  <section class="uiza-card-header" *ngIf="!!!settings.hideHeader">
+    <ng-content select="app-uiza-card-header">
+    </ng-content>
+  </section>
+  <section class="uiza-card-content" *ngIf="!!!settings.hideContent" >
+    <ng-content select="app-uiza-card-content"></ng-content>
+  </section>
+</section>

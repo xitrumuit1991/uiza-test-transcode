@@ -1,0 +1,16 @@
+<section class="uiza-move-popup">
+
+  <!-- <div class="modal-body"> -->
+    <!-- <p class="ng-binding ng-scope">Choose the {{options}} where you want to move</p> -->
+    <div class="metdada-box ng-scope" #checkboxScroll (scroll)="onScroll()">
+        <app-uiza-multi-checkbox [name]='settingModal.key' [(uizaModel)]="uizaModel" [settings]='settingModal.settings' (click)="setCurrentSelect()"></app-uiza-multi-checkbox>
+      <!-- <ul>
+        <li *ngFor='let item of uizaModel' (click)="setCurrentSelect(item)" [ngStyle]="{'background': item.color}">
+          <i class="icon-folder"></i>
+          <span class="ng-binding">   {{item.name}}</span>
+        </li>
+      </ul> -->
+    </div>
+  <!-- </div> -->
+
+</section>

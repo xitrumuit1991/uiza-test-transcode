@@ -1,0 +1,14 @@
+@import "../../../../assets/style/index";
+
+.uiza-empty-content {
+  text-align: center;
+  height: convert-px-rem(200);
+  padding-top: convert-px-rem(50);
+  color: #C0C8CD;
+  i {
+    font-size: convert-px-rem(50);
+  }
+  p {
+    margin-top: convert-px-rem(10);
+  }
+}

@@ -1,0 +1,61 @@
+@import "../../../../assets/style/index";
+.uiza-smart-form {
+    ::ng-deep .uiza-checkbox.single {
+        margin-bottom: convert-px-rem(25)
+    }
+    ::ng-deep .uiza-switch{
+        margin: 10px 0;
+    }
+  .dropdown-select{
+    display: flex;
+    overflow: hidden;
+    p{
+      margin-right: 5px;
+    }
+  }
+}
+.ellipsis-items {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  padding: 0 !important;
+}
+.advance-title{
+  color:#722FD6;
+  line-height: 35px;
+}
+.row {
+  display: flex;
+  .color-content{
+      height: 46px;
+      .color-picker-content {
+          border: none;
+          width: fit-content;
+          .color-show{
+            height: 28px;
+            width: 28px;
+            border-radius: 5px;
+            margin-top: 5px;
+          }
+          .color-span {
+              border-radius: 5px;
+              width: 32px;
+              height: 32px;
+          }
+          .icon-picker {
+              margin-left: 20px;
+          }
+      }
+  }
+}
+
+.border-none {
+  border: none;
+}
+
+.border-slim {
+  border: 1px solid #D1D1D1;
+}
+

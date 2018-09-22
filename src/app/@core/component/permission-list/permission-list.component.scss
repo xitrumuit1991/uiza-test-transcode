@@ -1,0 +1,81 @@
+@import "../../../../assets/style/index";
+
+.permission-list{
+  .group-items{
+    border: 1px solid #F1F4F5;
+    background-color: #F9FBFC;
+    box-shadow: 0 1px 4px 0 rgba(205,199,199,0.5);
+    padding-top:8px;
+    padding-bottom: 8px;
+  }
+  .group-title{
+    color: #4A4952;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .group-description{
+    color: #B1BBC1;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .items-source{
+    border: 1px solid #EBEFF0;
+    box-shadow: 0 1px 4px 0 rgba(205,199,199,0.5);
+    padding-bottom: 15px
+  }
+  .item-permision-value{
+    text-align: center;
+    border-radius: 4px;
+    color: #6B6E70;
+    /* font-family: "IBM Plex Mono"; */
+    font-size: 11px;
+    line-height: 14px;
+    margin-top: .5em;
+    margin-bottom: .5em;
+    border: 1px solid #DFE3E6;
+    background-color: #FBFBFB;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    //word-wrap: break-word;
+  }
+  .item-permision-description{
+    color: #4F4E57;
+    font-size: 12px;
+    font-weight: 200;
+    line-height: 15px;
+    padding-left: 2.875rem;
+  }
+  .item-permision{
+    display: flex;
+    margin-bottom: 14px;
+    .item-permision-title{
+      margin-top:.5em;
+  }
+    //::ng-deep.single{
+    //  padding-left: convert-px-rem(18);
+    //}
+    .item-permision-title{
+      color: #4F4E57;
+      font-size: 12px;
+      line-height: 15px;
+    }
+    ::ng-deep.checkmark{
+      margin-top: .2em;
+      height: 14px;
+      width: 14px;
+      border: 1px solid #DFE3E6;
+      border-radius: 2px;
+      &:after {
+        left: convert-px-rem(3);
+        top: 0;
+        width: convert-px-rem(7);
+        height: convert-px-rem(10);
+        border: solid #DFE3E6;
+        border-width: 0 convert-px-rem(3) convert-px-rem(3) 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+  }
+}

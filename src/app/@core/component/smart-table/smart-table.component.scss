@@ -1,0 +1,74 @@
+@import "../../../../assets/style/index";
+
+.uiza-smart-table {
+  .title {
+    height: 25px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    //white-space: nowrap;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    word-break: break-all;
+    white-space: -moz-pre-space;
+    display: -moz-inline-box;
+    width: -moz-fit-content;
+  }
+  margin: 0 convert-px-rem(-20);
+  tfoot,
+  thead {
+    background: #F9FBFC;
+    th {
+      border: none;
+    }
+  }
+  ::ng-deep .checkmark {
+    top: convert-px-rem(-6)
+  }
+  th,
+  td {
+    vertical-align: middle;
+  }
+  tr.group-subtitle td {
+    border: 1px solid #ebedf0 !important;
+  }
+  tbody {
+    tr:hover {
+      background-color: #FAFDFF;
+    }
+    tr:first-child {
+      th,
+      td {
+        border: none;
+
+      }
+    }
+  }
+  td:first-child,
+  th:first-child {
+    padding-left: convert-px-rem(20);
+  }
+  td:last-child,
+  th:last-child {
+    padding-right: convert-px-rem(20);
+  }
+  .action {
+    .icon {
+      margin-right: convert-px-rem(10);
+      &:last-child {
+        margin: 0;
+      }
+      color: #CFD6DE;
+      cursor: pointer;
+      &:hover {
+        color: $color-purple-heart;
+      }
+    }
+  }
+  .social-view {
+    color: $color-dodger-blue;
+  }
+  .social-view:hover {
+    color: $color-purple-heart;
+  }
+}

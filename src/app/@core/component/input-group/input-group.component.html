@@ -1,0 +1,15 @@
+<div class="row mr-bottom-10" *ngFor="let ite of uizaModel; let i = index;">
+  <div class="col-custom-3 col-lg-10">
+    <input [(ngModel)]="ite.name" [value]="ite.name" [ngModelOptions]="{standalone: true}" type="text" class="form-control"
+           [ngStyle]="{'border': ite.unValid ? 'solid red 1px' : ''}"/>
+  </div>
+  <div class="col-custom-1 col-lg-2" style="top:7px">
+    <i class="icon icon-add pointer pd-5" (click)="addNewValue()"></i>
+    <i class="icon icon-minimize pointer pd-5" (click)="minusOldValue(ite)"></i>
+  </div>
+</div>
+<div class="row mr-bottom-10" *ngIf="uizaModel.length === 0">
+  <div class="col-custom-3 col-lg-10">
+    <button type="button" class="btn btn-primary btn-sm" (click)="addNewValue()">Add new domain</button>
+  </div>
+</div>

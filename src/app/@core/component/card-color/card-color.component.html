@@ -1,0 +1,38 @@
+<section class="uiza-header-color">
+  <div *ngIf="source" class="card-color" [ngStyle]="{'background': settingColor[source.color || defaultColor].cardColor.backGround, 'box-shadow': settingColor[source.color || defaultColor].cardColor.boxShadow}">
+    <ng-container>
+      <div class="card-content">
+        <div style="position: relative">
+          <div class="oval-1" [ngStyle]='{"background": settingColor[source.color || defaultColor].oval1Color.backGround, "box-shadow": settingColor[source.color || defaultColor].oval1Color.boxShadow}'>
+            <div class="oval-2" [ngStyle]='{"background": settingColor[source.color || defaultColor].oval2Color.backGround, "box-shadow": settingColor[source.color || defaultColor].oval2Color.boxShadow}'></div>
+          </div>
+        </div>
+        <div class='content-middle'>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="card-title">{{source.title}}</label>
+            </div>
+            <div class="col-md-12">
+              <ng-container *ngFor="let item of source.value">
+                <div class="row">
+                  <div class="col-md-5" *ngIf='item.title'>
+                    <div class="item-container">
+                      <label class="card-plane">{{item.title}}</label>
+                    </div>
+                  </div>
+                  <div class="col-md-7 pd-left-0 text-center">
+                    <!-- <label class="card-price" *ngIf='item.type=="money"'>{{item.value|uizaNumber:'$,0'}}</label>
+                    <label class="card-price" *ngIf='item.type=="number"'>{{item.value|uizaNumber:',0'}}</label>
+                    <label class="card-price" *ngIf='!item.type'>{{item.value|uizaNumber:',0'}}</label> -->
+                    <label *ngIf="!source.costMode" class="card-price">{{item.value | number}}</label>
+                    <label *ngIf="source.costMode" class="card-price">{{item.value | currency:'$'}}</label>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</section>

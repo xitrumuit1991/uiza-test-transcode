@@ -1,0 +1,70 @@
+@import "../../../../assets/style/index";
+
+.uiza-card {
+  margin-bottom: convert-px-rem(20);
+  background: $color-white;
+  border-radius: convert-px-rem(4);
+  box-shadow: 0 convert-px-rem(5) convert-px-rem(15) 0 rgba(51, 59, 74, 0.03);
+  &-header {
+    min-height: convert-px-rem(50);
+    border-bottom: convert-px-rem(1) solid #EFEFEF;
+    box-sizing: border-box;
+    padding: convert-px-rem(10) convert-px-rem(20);
+  }
+  &-content {
+    min-height: convert-px-rem(200);
+    padding: convert-px-rem(10) convert-px-rem(20)
+  }
+
+  ::ng-deep &-title {
+    margin-bottom: convert-px-rem(2);
+    font-size: convert-px-rem(14);
+    font-weight: 300;
+  }
+  ::ng-deep &-subtitle {
+    margin: 0;
+    color: #B1BBC1;
+    font-weight: 200;
+    line-height: 2.5em;
+  }
+  
+  ::ng-deep &-button {
+    .btn {
+      margin-left: convert-px-rem(10);
+    }
+  }
+  ::ng-deep &-tab-button {
+
+    padding: convert-px-rem(10) convert-px-rem(10) convert-px-rem(14);
+    position: relative;
+    top: convert-px-rem(10);
+    cursor: pointer;
+    white-space: nowrap;
+    * {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .icon{
+      margin-right: convert-px-rem(10);
+    }
+    span {
+      font-size: convert-px-rem(14);
+    }
+    @mixin hover {
+      border-bottom: convert-px-rem(3) solid purple;
+      color: $color-purple-heart;
+      * {
+        color: $color-purple-heart;
+      }
+    }
+    &.active {
+      @include hover;
+    }
+    &:hover {
+      @include hover;
+    }
+  }
+
+}
+
+

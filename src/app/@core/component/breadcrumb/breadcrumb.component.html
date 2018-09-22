@@ -1,0 +1,37 @@
+<nav aria-label="breadcrumb" class="uiza-breadcrumb" *ngIf="breadcrumbs?.length>0">
+  <!--<ol class="breadcrumb">-->
+    <!--<li class="breadcrumb-item"><a href="#">Home</a></li>-->
+    <!--<li class="breadcrumb-item"><a href="#">Library</a></li>-->
+    <!--<li class="breadcrumb-item active" aria-current="page">Data</li>-->
+  <!--</ol>-->
+  <ul class="list-inline pd-left-0">
+    <li class="list-inline-item ">
+      <a class="pointer list-breadcrumb" (click)="goToHref('/admin/dashboard')">
+        <i class="icon icon-home-1 font-10"></i>
+      </a>
+      <label class="font-12"> ></label>
+    </li >
+    <li class="list-inline-item" *ngFor="let breadcrumb of breadcrumbs; let i=index;" >
+      <a *ngIf="i<breadcrumbs.length-1" class="pointer text-12 list-breadcrumb" (click)="goToHref(breadcrumb.url)" >
+        {{breadcrumb.label}}
+      </a>
+      <label *ngIf="i<breadcrumbs.length-2"> > </label>
+    </li>
+    <li >
+      <label  class="lastbreadcrumbs "  >
+        {{breadcrumbs[breadcrumbs.length-1].label}}
+      </label>
+    </li>
+  </ul>
+
+</nav>
+<nav aria-label="breadcrumb" class="uiza-breadcrumb" *ngIf="breadcrumbs?.length==0">
+  <div class="row pd-bottom-20">
+    <div class="col-md-12 pd-top-5 font-16">
+      <div class="inline-block">
+        <span >Welcome to Uiza! </span>
+        <!-- <span class="font-header"></span> -->
+      </div>
+    </div>
+  </div>
+</nav>

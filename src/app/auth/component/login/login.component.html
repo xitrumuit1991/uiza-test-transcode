@@ -1,0 +1,25 @@
+<h1>Uiza login component</h1>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Domain</span>
+  </div>
+  <input type="email" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" [(ngModel)]="account.domain">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Email</span>
+  </div>
+  <input type="text" (keyup.enter)="onSubmit()" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" [(ngModel)]="account.username">
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Password</span>
+  </div>
+  <input type="password" (keyup.enter)="onSubmit()" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+    [(ngModel)]="account.password">
+</div>
+
+<button type="button" (click)="onSubmit()" class="btn btn-primary">Login</button>
+

@@ -1,0 +1,143 @@
+<!--<button type="button" class="btn btn-secondary btn-sm" (click)='testData()'>Secondary</button>-->
+<section class="uiza-smart-table">
+  <app-uiza-empty-content *ngIf="source && source.length ===0 && settings.emptyContent" [settings]="settings.emptyContent"></app-uiza-empty-content>
+  <div class="table-responsive " [ngStyle]="{'max-height': settings.tableMaxHeight}">
+    <table class="table table-hover" *ngIf="source && source.length>0">
+      <thead class='{{settings.defaultHeaderClass || "text-left"}}'>
+      <tr *ngIf='!settings.mainHeaderColumns'>
+        <th scope="col" *ngIf="settings.display && settings.display.rowNumber === false ? false : true">#</th>
+        <th scope="col" *ngIf="settings.display && settings.display.select === false ? false : true">
+            <app-uiza-checkbox *ngIf="!!settings.display.enableSelectAll" [name]="'select-smart-table'" (uizaChange)="onSelectAll($event)"></app-uiza-checkbox>
+            <span *ngIf="settings.display.selectText">Select</span>
+        </th>
+        <ng-container *ngFor="let key of settings.columns|objects">
+          <th class="{{settings.columns[key].class || ''}}" scope="col">{{settings.columns[key].title}}</th>
+        </ng-container>
+        <th class="{{settings.actionsClass || ''}}" scope="col-1" *ngIf="settings.display && settings.display.actions === false ? false : true" style="width: 100%; display: inline-block">Action</th>
+      </tr>
+
+      <tr *ngIf='settings.mainHeaderColumns && settings.mainHeaderColumns.length > 0'>
+        <ng-container *ngFor='let sub of settings.mainHeaderColumns'>
+          <th [attr.class]='sub.class' [attr.colspan]="sub.colspan">{{sub.title}}</th>
+        </ng-container>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr class='group-subtitle' *ngIf='settings.subHeaderColumns && settings.subHeaderColumns.length > 0'>
+        <td *ngIf="settings.display && settings.display.rowNumber === false ? false : true"></td>
+        <td *ngIf="settings.display && settings.display.select === false ? false : true"></td>
+        <ng-container *ngFor='let sub of settings.subHeaderColumns'>
+          <td [attr.class]='sub.class' [attr.colspan]="sub.colspan">{{sub.title}}</td>
+        </ng-container>
+        <td scope="col-1" *ngIf="settings.display && settings.display.actions === false ? false : true"></td>
+      </tr>
+
+      <ng-container *ngFor="let data of source;let row = index">
+        <tr>
+          <th scope="row" *ngIf="settings.display && settings.display.rowNumber === false ? false : true">{{row + 1}}</th>
+          <td scope="row" *ngIf="settings.display && settings.display.select === false ? false : true">
+            <app-uiza-checkbox [name]="'select-smart-table'" [(uizaModel)]="data.isSelected" (uizaChange)="onSelectChange($event,data)"></app-uiza-checkbox>
+          </td>
+          <ng-container *ngFor="let key of settings.columns|objects">
+            <ng-container [ngSwitch]='settings.columns[key].type'>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchDefault> {{data[key]}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'string'" style="-webkit-box-orient: vertical;">{{data[key]}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'entityName'">{{data[key] | nameEntity}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'month'">{{data[key]|month}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'datetime'">{{data[key]|datetime}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'sqlDatetime'">{{data[key]|sqlDatetime}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'money'">{{data[key]|uizaNumber:'$,2'}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'number'">{{data[key]|number : '1.0-2'}}</td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'custom'" [innerHTML]="(settings.columns[key].valuePrepareFunction && settings.columns[key].valuePrepareFunction(data[key],row, data)) || data[key]"></td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'checkbox'">
+                <app-uiza-checkbox [name]="key" [(checked)]="data[key]" (uizaChange)="settings.columns[key].onChange($event,data,key)"></app-uiza-checkbox>
+              </td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'radio'">
+                <app-uiza-radio [name]="key"></app-uiza-radio>
+              </td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'toggleSwitch'">
+                <app-uiza-toggle-switch [name]="key" [uizaModel]="data[key]" (uizaModelChange)="settings.columns[key].onChange($event, data)"></app-uiza-toggle-switch>
+              </td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'view'">
+                <span [attr.class]="settings.columns[key].settings.class" (click)="settings.columns[key].settings.action(data)">{{settings.columns[key].settings.name}}</span>
+              </td>
+              <td class="action" scope="col" *ngSwitchCase="'viewIcon'" (click)="settings.columns[key].settings.action(data)" [innerHTML]="(settings.columns[key].valuePrepareFunction && settings.columns[key].valuePrepareFunction(data[key],row, data)) || data[key]"></td>
+            </ng-container>
+          </ng-container>
+
+          <td class="action {{settings.actionsClass || ''}}" *ngIf="settings.display && settings.display.actions === false ? false : true">
+            <i class="icon icon-add" *ngIf="settings.actions && settings.actions.add === false ? false : true && settings.addFunction"
+               (click)="settings.addFunction()" placement="top" tooltip="Add new item" container="body"></i>
+            <i class="icon {{settings.iconEdit || 'icon-edit'}}" *ngIf="settings.actions && settings.actions.edit === false ? false : true && settings.editFunction"
+               (click)="settings.editFunction(data)" data-toggle="tooltip" data-placement="top" ngbTooltip="Edit item" container="body"></i>
+            <i class="icon {{settings.iconView || 'icon-view'}}" *ngIf="settings.actions && settings.actions.view === false ? false : true && settings.viewFunction"
+               (click)="settings.viewFunction(data)" data-toggle="tooltip" data-placement="top" ngbTooltip="View" container="body"></i>
+            <i class="icon {{settings.iconDelete || 'icon-del'}}" *ngIf="settings.actions && settings.actions.delete === false ? false : true && settings.deleteFunction"
+               (click)="settings.deleteFunction(data)" data-toggle="tooltip" data-placement="top" ngbTooltip="Delete" container="body"></i>
+          </td>
+        </tr>
+      </ng-container>
+
+      </tbody>
+      <tfoot>
+      <tr>
+        <ng-container *ngFor='let sub of settings.footerColumns'>
+          <th [attr.class]='sub.class' [attr.colspan]="sub.colspan">{{sub.title}}</th>
+        </ng-container>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+
+</section>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col pull-left" *ngIf="settings.display && settings.display.paging === false ? false : true && source && source.length>0  && settings.paging.total>5">
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Rows</label>
+          <div class="col-sm-4">
+            <select class='form-control' [(ngModel)]='settings.paging.limit' (change)='onLimitChange(settings.paging.limit)' style="width: 3.5rem">
+              <ng-container *ngFor='let limit of settings.limits || [5,10,15,20]'>
+                <option value="{{limit}}">{{limit}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <label class="col-sm-3 col-form-label">Total:{{settings.paging.total}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8" *ngIf="settings.display && settings.display.paging === false ? false : true && source && source.length>0 && settings.paging.limit < settings.paging.total && settings.paging.total>5">
+    <div class="row">
+      <div class="col pull-left">
+        <div class="form-group row">
+          <!--<label class="col-sm-3 col-form-label">Rows</label>-->
+          <!--<div class="col-sm-9">-->
+
+          <!--<select class='form-control' [(ngModel)]='settings.paging.limit' (change)='onLimitChange(settings.paging.limit)'>-->
+          <!--<ng-container *ngFor='let limit of settings.limits || [5,10,15,20]'>-->
+          <!--<option value="{{limit}}">{{limit}}</option>-->
+
+          <!--</ng-container>-->
+          <!--</select>-->
+          <!--</div>-->
+        </div>
+      </div>
+      <div class='col' *ngIf="settings.display.showPageNumber">
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label">Page</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control form-control-sm" placeholder="Page Number" (keyup.enter)='onSelectPaging($event)' [(value)]="settings.paging.page" [min]="1" [max]="settings.paging.total">
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <app-uiza-pagination [(paging)]="settings.paging"></app-uiza-pagination>
+      </div>
+    </div>
+  </div>
+
+</div>

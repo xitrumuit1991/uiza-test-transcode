@@ -1,0 +1,14 @@
+@import "../../../../assets/style/index";
+
+.uiza-breadcrumb {
+  .lastbreadcrumbs{
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .list-breadcrumb:hover{
+    color: $color-purple-heart-light;
+  }
+  .font-header{
+    font-weight: 500;	line-height: 20px;
+  }
+}

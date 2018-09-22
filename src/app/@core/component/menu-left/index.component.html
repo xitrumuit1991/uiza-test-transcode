@@ -1,0 +1,20 @@
+<aside class="uiza-left-bar">
+  <ul class="main-menu text-uppercase">
+    <ng-container *ngFor="let menu of menus">
+      <li class="main-title" *ngIf="!menu.group" [ngStyle]="{'margin-top.px': menu.margin}">
+        <i class="icon {{menu.icon}}" *ngIf="menu.icon"></i>
+        <a routerLink="{{menu.link}}" *ngIf="menu.link" routerLinkActive="active">{{menu.title}}</a>
+        <a routerLink="{{menu.link}}" *ngIf="!menu.link">{{menu.title}}</a>
+        <ul class="sub-menu text-capitalize" *ngIf="menu.children">
+          <ng-container *ngFor="let child of menu.children">
+            <li class="sub-title">
+              <a routerLink="{{child.link}}" routerLinkActive="active">{{child.title}}</a>
+            </li>
+          </ng-container>
+        </ul>
+      </li>
+      <li class="group-title" *ngIf="menu.group">{{menu.title}}</li>
+    </ng-container>
+
+  </ul>
+</aside>

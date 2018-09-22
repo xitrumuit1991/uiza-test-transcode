@@ -1,0 +1,73 @@
+<section class="subscription-table">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row d-flex justify-content-center">
+        <!-- Subcription Plan -->
+        <ng-container *ngFor="let item of source">
+          <!-- Left panel -->
+          <div class="col">
+            <div class="plan-table">
+
+              <div class="header-title-container">
+                <!-- Plan title -->
+                <label class="header-title">{{item.name}}</label>
+              </div>
+
+              <div class="plan-detail-container">
+                <!-- Plan detail -->
+                <div class="plan-detail-header">
+                  <div>
+                    <p class="display-inline plan-detail-price"*ngIf='item.price>0; else contactTitle'>{{item.unit}}{{item.price}}</p>
+                    <ng-template #contactTitle>
+                      <p class="display-inline plan-detail-price">Contact us</p>
+                    </ng-template>
+                    <p class="display-inline plan-detail-duration" *ngIf='item.price>0'>/{{item.cycleText}}</p>
+                  </div>
+
+                  <div *ngIf='item.shortDescription'>
+                    <p class="display-inline plan-detail-benefit">{{item.shortDescription}}</p>
+                  </div>
+                </div>
+
+                <div class="plan-detail-body mt-3">
+                  <div *ngFor="let feature of item.features" class="feature">
+                    <p class="display-inline feature-title">
+                      <i class="icon-check feature-icon active-icon" *ngIf="feature.active==1; else iconBlank"></i>{{feature.name}}
+                    </p>
+                    <ng-template #iconBlank>
+                      <i class="icon-check feature-icon white-icon"></i>
+                    </ng-template>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="feature-button d-flex" *ngIf="setting == item.name; else choosePlanButton">
+                <button (click)="choseSubscription(item.id)" class="btn-sm btn-choose-plan btn-choose my-2 btn-disabled" disabled>
+                  <span class="lbl-btn-choose-plan mx-2">Choose Plan</span>
+                </button>
+              </div>
+
+              <ng-template #choosePlanButton>
+                <div class="feature-button d-flex" *ngIf="item.price>0; else contactButton">
+                  <button (click)="choseSubscription(item.id)" class="btn-sm btn-choose-plan btn-choose my-2">
+                    <span class="lbl-btn-choose-plan mx-2">Choose Plan</span>
+                  </button>
+                </div>
+              </ng-template>
+
+              <ng-template #contactButton>
+                <div class="feature-button d-flex">
+                  <button (click)="choseSubscription(item.id)" class="btn-sm btn-contact btn-choose my-2 btn-disabled" disabled>
+                    <span class="lbl-btn-choose-plan mx-2">Choose Plan</span>
+                  </button>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <!-- </div> -->
+  </div>
+</section>

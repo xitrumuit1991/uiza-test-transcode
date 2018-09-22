@@ -1,0 +1,37 @@
+@import "../../../../assets/style/index";
+.item-container {
+  height: 208px;
+  width: 448px;
+  border: 1px solid #D1D1D1;
+  border-radius: convert-px-rem(4);
+  background-color: #FDFDFD;
+}
+.input-container {
+  height: 48px;
+  width: 408px;
+  border-radius: convert-px-rem(4);
+  background-color: #FFFFFF;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.12);
+
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  margin: 10px;
+
+  .item {
+    position: relative;
+  }
+  .card-image {
+    height: convert-px-rem(20);
+    width: auto;
+  }
+  .item-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .card-info {
+    line-height: convert-px-rem(48);
+    margin-left: convert-px-rem(10);
+  }
+}

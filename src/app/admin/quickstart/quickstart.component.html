@@ -1,0 +1,271 @@
+<div class="row">
+  <div class="col-md-6 uiza-card-selection">
+    <div *ngFor="let item of destinationUpload">
+      <a (click)="activeLinkDestination(item)" class="uiza-card-tab-button {{ item.isActive ? 'active':''}}">
+        <span>{{item.title}}</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<!--Todo Vod-->
+  <div class="col-md-12" *ngIf="selectedDestination.title=='VOD'">
+
+    <!--Todo step1-->
+    <div class="row">
+      <div class="col-md-12">
+        <app-uiza-request-content>
+          <app-uiza-card-header>
+            <p class="request-content-title">Step 1. Post a video & Publish</p>
+            <p class="request-content-description">POST the URL of any video file using the Uiza API. Uiza will retrieve the file and initiate video publishing workflow from ingest, transcode, packaging and make it available for streaming.</p>
+            <p class="badge badge-pill request-content-subtitle-method"> POST</p>
+            <span class="request-content-subtitle">v3/media/entity</span>
+            <i *ngIf="selectedDestination.check[0]==1" class="icon-check"></i>
+            <i *ngIf="selectedDestination.check[0]==2" class="icon-close"></i>
+            <br>
+            <p class="badge badge-pill request-content-subtitle-method"> POST</p>
+            <span class="request-content-subtitle">v3/media/entity/publish</span>
+            <i *ngIf="selectedDestination.check[1]==1" class="icon-check"></i>
+            <i *ngIf="selectedDestination.check[1]==2" class="icon-close"></i>
+            <br>
+            <span class="badge badge-pill request-content-subtitle-method"> GET</span>
+            <span class="request-content-subtitle">v3/media/entity/publish/status</span>
+            <i *ngIf="selectedDestination.check[2]==1" class="icon-check"></i>
+            <i *ngIf="selectedDestination.check[2]==2" class="icon-close"></i>
+          </app-uiza-card-header>
+          <app-uiza-card-content >
+            <div class="row mr-0 mr-bottom-25 pd-bottom-15">
+              <!--Todo left (curl request) *ngIf="selectedDestination.step==1"-->
+              <div class="col-md-6">
+                <!--<div class="row">-->
+                  <!--<app-uiza-smart-form class="col-md-12" [inputs]="formInputVod" [source]="formSourceVod"-->
+                                       <!--[settings]="formSettingVod"></app-uiza-smart-form>-->
+                <!--</div>-->
+                <div class="row mr-top-15">
+                  <div class="col-md-9 header-data-request">cURL</div>
+                  <div class="col-md-3">
+                    <button *ngIf="selectedDestination.runStep2==false" class="btn btn-primary" style="width: 100%" (click)="run(selectedDestination)">
+                      Run
+                    </button>
+                  </div>
+                </div>
+                <div class="row request-content-data">
+                  <div class="col-md-12 form-group">
+                    <textarea style="height: 350px" *ngIf="key"  (change)="onTextAreaChange($event)"  class="text-content form-control">{{selectedDestination.formSource}}
+                    </textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!--Todo right (curl respond)-->
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-11">
+                    <div class="progress ">
+                      <div class="progress-bar" [style.width.%]="selectedDestination.progressBarPercent"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-1 pd-left-0">{{selectedDestination.progressBarPercent}}%</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9 header-data-request">Response Body</div>
+                </div>
+                <div class="row request-content-data">
+                  <div class="col-md-12">
+                    <div class="text-content" style="height: 350px">
+                      <code *ngFor="let data of selectedDestination.dataResponse" highlight class="json"
+                            [style.marginLeft.px]="getMarginLeft(data.level)">{{data.value}}</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--<div class="row">-->
+              <!--<div class="col-md-12 text-center">-->
+                <!--<button *ngIf="selectedDestination.progressBarPercent==100" class="btn btn-primary mr-bottom-25" (click)="nextStep(selectedDestination)">Next Step</button>-->
+              <!--</div>-->
+            <!--</div>-->
+          </app-uiza-card-content>
+        </app-uiza-request-content>
+      </div>
+    </div>
+
+
+    <!--Todo step2-->
+    <div class="row">
+      <div class="col-md-12">
+        <app-uiza-request-content>
+          <app-uiza-card-header>
+            <p class="request-content-title">Step 2. Embed into Player and Stream video</p>
+            <p class="request-content-description">Uiza instantly adds linkplay into Uiza player and you can stream video in any device, any network condition. Using machine learning, Uiza will lower your streaming costs and make better experience for your user.</p>
+          </app-uiza-card-header>
+          <app-uiza-card-content *ngIf="selectedDestination.step==2">
+            <div class="row mr-0 mr-bottom-25">
+              <!--Todo left (curl request)-->
+              <div class="col-md-6" >
+                <div *ngIf="selectedDestination.playerOptions.name" class="header-data-request mr-bottom-6">{{selectedDestination.playerOptions.name}}</div>
+                <app-uiza-player [options]="selectedDestination.playerOptions"></app-uiza-player>
+              </div>
+              <!--Todo right (curl respond)-->
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6 header-data-request">Iframe Copy</div>
+                  <div class="col-md-6">
+                    <button class="btn btn-primary float-right" (click)="viewDemo()">View Embedded HTML</button>
+                  </div>
+                </div>
+                <div class="row request-content-data">
+                  <div class="col-md-12">
+                    <div class="text-content" style="height: 229px">
+                        <i class="icon-copy float-right" (click)="copyEmbedCode(embedElementVod.nativeElement.innerText, embedElementVod.nativeElement)" title="Copy"></i>
+                      <code #embedElementVod *ngIf="selectedDestination.dataResponseStep3" highlight class="html" [innerHtml]="selectedDestination.dataResponseStep3"></code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <button  class="btn btn-primary mr-bottom-25 mr-right-15" (click)="destroy(selectedDestination)">Create Again</button>
+                <button  class="btn btn-primary mr-bottom-25 mr-right-15" (click)="navigate('/admin/video-on-demand/entity/management')">Go to Entity Management</button>
+              </div>
+            </div>
+          </app-uiza-card-content>
+        </app-uiza-request-content>
+      </div>
+    </div>
+
+  </div>
+
+<!--Todo Live Stream-->
+  <div class="col-md-12" *ngIf="selectedDestination.title=='Livestream'">
+
+    <!--Todo step1-->
+    <div class="row">
+      <div class="col-md-12">
+        <app-uiza-request-content>
+          <app-uiza-card-header>
+            <p class="request-content-title">Step 1. Create a Channel, Start Stream & Check Info</p>
+            <p class="request-content-description">Uiza prepares the endpoint for you and harness all the complicated works. Live feed from Uiza will be available to stream instantly</p>
+            <p class="badge badge-pill request-content-subtitle-method"> POST</p>
+            <span class="request-content-subtitle">v3/live/entity</span>
+            <i *ngIf="selectedDestination.check[0]==1" class="icon-check"></i>
+            <i *ngIf="selectedDestination.check[0]==2" class="icon-close"></i>
+            <br>
+            <p class="badge badge-pill request-content-subtitle-method"> POST</p>
+            <span class="request-content-subtitle">v3/live/entity/feed</span>
+            <i *ngIf="selectedDestination.check[1]==1" class="icon-check"></i>
+            <i *ngIf="selectedDestination.check[1]==2" class="icon-close"></i>
+            <br>
+            <p class="badge badge-pill request-content-subtitle-method"> GET</p>
+            <span class="request-content-subtitle">v3/live/entity/feed</span>
+            <i *ngIf="selectedDestination.check[2]==1" class="icon-check"></i>
+            <i *ngIf="selectedDestination.check[2]==2" class="icon-close"></i>
+          </app-uiza-card-header>
+          <app-uiza-card-content >
+            <div class="row mr-0 mr-bottom-25 pd-bottom-15">
+              <!--Todo left (curl request) *ngIf="selectedDestination.step==1"-->
+              <div class="col-md-6">
+                <div class="row">
+                  <app-uiza-smart-form (change)="formChange($event)" class="col-md-12" [inputs]="formInputLive" [source]="formSourceLive"
+                                       [settings]="formSettingLive"></app-uiza-smart-form>
+                </div>
+                <div class="row">
+                  <div class="col-md-9 header-data-request">cURL</div>
+                  <div class="col-md-3">
+                    <button *ngIf="selectedDestination.runStep2==false" class="btn btn-primary" style="width: 100%" (click)="run(selectedDestination)">
+                      Run
+                    </button>
+                  </div>
+                </div>
+                <div class="row request-content-data">
+                  <div class="col-md-12 form-group">
+                    <textarea  id="textarea{{selectedDestination.title}}" *ngIf="key"  (change)="onTextAreaChange($event)"  class="text-content form-control" >{{selectedDestination.formSource}}
+                    </textarea>
+                  </div>
+                </div>
+
+              </div>
+
+              <!--Todo right (curl respond)-->
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-11">
+                    <div class="progress ">
+                      <div class="progress-bar" [style.width.%]="selectedDestination.progressBarPercent"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-1 pd-left-0">{{selectedDestination.progressBarPercent}}%</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9 header-data-request">Response Body</div>
+                </div>
+                <div class="row request-content-data">
+                  <div class="col-md-12">
+                    <div class="text-content" style="height: 458px">
+                      <code *ngFor="let data of selectedDestination.dataResponse" highlight class="json"
+                            [style.marginLeft.px]="getMarginLeft(data.level)">{{data.value}}</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--<div class="row">-->
+              <!--<div class="col-md-12 text-center">-->
+                <!--<button *ngIf="selectedDestination.progressBarPercent==100" class="btn btn-primary mr-bottom-25" (click)="nextStep(selectedDestination)">Next Step</button>-->
+              <!--</div>-->
+            <!--</div>-->
+          </app-uiza-card-content>
+        </app-uiza-request-content>
+      </div>
+    </div>
+
+
+    <!--Todo step2-->
+    <div class="row">
+      <div class="col-md-12">
+        <app-uiza-request-content>
+          <app-uiza-card-header>
+            <p class="request-content-title">Step 2. Embed into Player and Live stream</p>
+            <p class="request-content-description">Uiza instantly adds linkplay into Uiza player and you can start live stream in any device, any network condition. Using machine learning, Uiza will lower your streaming costs and make better experience for your user.</p>
+          </app-uiza-card-header>
+          <app-uiza-card-content *ngIf="selectedDestination.step==2">
+            <div class="row mr-0 mr-bottom-25">
+              <!--Todo left (curl request) -->
+              <div class="col-md-6" >
+                <div *ngIf="selectedDestination.playerOptions.name" class="header-data-request mr-bottom-6">{{selectedDestination.playerOptions.name}}</div>
+                <app-uiza-player [options]="selectedDestination.playerOptions"></app-uiza-player>
+              </div>
+              <!--Todo right (curl respond)-->
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6 header-data-request">Iframe Copy</div>
+                  <div class="col-md-6">
+                    <button class="btn btn-primary float-right" (click)="viewDemo()">View Embedded HTML</button>
+                  </div>
+                </div>
+                <div class="row request-content-data">
+                  <div class="col-md-12">
+                    <div class="text-content" style="height: 229px">
+                      <i class="icon-copy float-right" (click)="copyEmbedCode(embedElementLive.nativeElement.innerText, embedElementLive.nativeElement)" title="Copy"></i>
+                      <code #embedElementLive *ngIf="selectedDestination.dataResponseStep3" highlight class="html" [innerHtml]="selectedDestination.dataResponseStep3"></code>
+                    </div>
+                  </div>
+                </div>
+              </div>`
+            </div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <button  class="btn btn-primary mr-bottom-25 mr-right-15" (click)="destroy(selectedDestination)">Create Again</button>
+                <button  class="btn btn-primary mr-bottom-25 mr-right-15" (click)="navigate('/admin/live-streaming/event/tracking')">Go to Tracking Event</button>
+              </div>
+            </div>
+          </app-uiza-card-content>
+        </app-uiza-request-content>
+      </div>
+    </div>
+
+  </div>
+</div>
+

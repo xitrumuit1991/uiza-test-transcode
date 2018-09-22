@@ -1,0 +1,61 @@
+<app-uiza-card  [settings]="{'hideHeader': true}">
+  <app-uiza-card-header>
+    <div class="row">
+      <div class="col-md-6">
+        <h5 class="uiza-card-title">Packager</h5>
+        <p class="uiza-card-subtitle">Choose where you want to publish your content</p>
+      </div>
+      <div class="col-md-6">
+        <div class="pull-right">
+          <app-uiza-checkbox [title]="'Select all'" [uizaModel]="selectAllModel" (uizaChange)="clickSelectAll($event)" ></app-uiza-checkbox>
+        </div>
+      </div>
+    </div>
+  </app-uiza-card-header>
+
+  <app-uiza-card-content>
+    <!--<div class="row">-->
+      <!--<div class="col-md-4"  *ngFor="let ite of desPublish">-->
+        <!--<div  class="item-publish text-center {{ite.isActive ? 'active' : ''}}" >-->
+          <!--<app-uiza-checkbox class="check" [uizaModel]="ite.isActive" (uizaChange)="ite.onChange($event, ite)" ></app-uiza-checkbox>-->
+          <!--<img src="{{ite.icon}}">-->
+          <!--<div class="text-center block-title">{{ite.title}}</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+      <div class="col-md-12 text-left mr-top-20" *ngFor="let ite of chooseOptions">
+        <div class="font-weight-bold">{{ite.title}}</div>
+        <p>{{ite.subtitle}}</p>
+        <app-uiza-multi-radio [name]="ite.settings.name" (uizaModelChange)="ite.settings.onChange($event)" [settings]="ite.settings" ></app-uiza-multi-radio>
+      </div>
+      <div class="col-md-6" *ngIf="useExtendData === 'yes'">
+        <div class="row">
+        <div class="col-md-11">
+          <ng-select [items]='extendList' bindLabel="name"
+                     bindValue="value" [(ngModel)]="selectedExtend">
+          </ng-select>
+          <!--<select [(ngModel)]="selectedExtend" class="form-control">-->
+            <!--<option *ngFor="let opt of extendList" value="{{opt.value}}">{{opt.name}}</option>-->
+          <!--</select>-->
+        </div>
+        <div class="col-md-1">
+          <i class="icon icon-add d-flex" style="margin-top: 8px; margin-left: -15px" (click)="showAddExtendModal()"></i>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="row mr-top-20 mr-bottom-20">
+      <div class="col text-center">
+        <button *ngIf="settings" class="btn btn-primary btn-sm" (click)="settings.submit()">Complete</button>
+        <!--<button *ngIf="Complete" class="btn btn-primary btn-sm" (click)="Complete()">Complete</button>-->
+      </div>
+    </div>
+  </app-uiza-card-content>
+</app-uiza-card>
+<app-uiza-modal-popup #extendDataModal [modalObject]="popUpAddExtendComponent">
+  <app-uiza-modal-popup-content>
+    <app-uiza-extend-data-action [settings]="{'hideHeader': true, 'modalMode': true}" (onCancel)="cancelExtend()" (onSubmit)="submitExtend($event)">
+    </app-uiza-extend-data-action>
+  </app-uiza-modal-popup-content>
+</app-uiza-modal-popup>

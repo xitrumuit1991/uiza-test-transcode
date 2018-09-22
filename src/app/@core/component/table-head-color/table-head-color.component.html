@@ -1,0 +1,15 @@
+<section class="uiza-table-head">
+    <div class="row">
+      <div class="col-xl-12 table-head-color" [ngStyle]="{'background': settingColor[source.color || defaultColor].backGround, 'box-shadow': settingColor[source.color || defaultColor].boxShadow}">
+        <div class="col-xl-4">
+          <span class="table-title">{{source.left.title}}</span>
+        </div>
+        <div class="col-xl-4 text-align-center">
+          <span class="table-title">{{source.center.title}}: {{source.center.value}}</span>
+        </div>
+        <div class="col-xl-4 text-align-right">
+          <span class="table-title">{{source.right.title}} <span class="title-total">{{source.right.value}}</span></span>
+        </div>
+      </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+<div class="uiza-pagination">
+  <ngb-pagination
+      class="pull-right"
+      [collectionSize]="paging.total"
+      [(page)]="paging.page"
+      [boundaryLinks]="false"
+      [maxSize]="paging.maxSize || 4"
+      [pageSize]="paging.limit"
+      [rotate]="true"
+      (pageChange)="onChange(paging)"
+  ></ngb-pagination>
+</div>

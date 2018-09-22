@@ -1,0 +1,13 @@
+<ng-container *ngFor='let data of settings.values'>
+
+  <label class="uiza-radio {{settings.block ? 'd-block' : ''}}">
+    <input type="radio" [attr.name]="name || 'uiza'" [checked]='uizaModel === data[settings.valueKey ||"value"] ? "checked": ""' [value]="data[settings.valueKey ||'value']"
+      (change)='onChange($event)'>
+    <span class="checkmark"></span>
+    <span class='label' *ngIf='data.title'>{{data[settings.titleKey ||'title']}}</span>
+  </label>
+
+  <!--<label *ngIf="Check===data.value">dmm</label>-->
+
+</ng-container>
+<label *ngIf="settings.showDescription" class="radio-description">{{currentDes}}</label>

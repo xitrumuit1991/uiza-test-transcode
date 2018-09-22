@@ -1,0 +1,62 @@
+<!-- Left container -->
+<div *ngIf="!autoLogin">
+<div>
+  <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5" id="div-left-container" align="left">
+    <div><img src="/assets/img/Logo.png" id="img-logo"></div>
+    <div class="centered">
+      <p class="img-text-title">THE ULTIMATE TOOLKIT TO BUILD POWERFUL VIDEO PLATFORMS.</p><br>
+      <P class="img-text-body">Start streaming with a few lines of code.</P>
+    </div>
+  </div>
+</div>
+
+<!-- Right container -->
+<div class="col-sm-7 col-md-7 col-lg-7 col-xl-7" align="right" id="right-container">
+
+  <div class="div-right-center">
+    <div class="inline">
+      <p class="display-inline lbl-created-your-workspace">Sign in</p>
+    </div>
+
+    <!--<label class="lbl-fail-notification" style="">{{errorInput}}</label>-->
+    <div *ngIf="isLocal" class="mr-bottom-20">
+      <p class="lbl-input-email">YOUR DOMAIN</p>
+      <div>
+        <input [ngClass]="{'div-fail-notification' : isError}"  [(ngModel)]="account.domain"  class="display-inline input-workspace-name" type="text" name="" placeholder="example.uiza.co">
+        <!--<img *ngIf="isError" class="display-inline status-icon" src="/assets/img/ico_close.png" style="max-width: 30px; max-height: 30px;">-->
+      </div>
+    </div>
+    <p class="lbl-input-email">ACCOUNT</p>
+    <div>
+      <input   [(ngModel)]="account.username"  class="display-inline input-workspace-name" type="text" name="" placeholder="example@uiza.co">
+      <img *ngIf="isError" class="display-inline status-icon" src="/assets/img/ico_close.png" style="max-width: 30px; max-height: 30px;">
+    </div>
+    <div style="margin-top: 4%;">
+      <p class="lbl-input-email" style="margin-bottom: 11px;">PASSWORD</p>
+      <div>
+        <input  [(ngModel)]="account.password" (keyup.enter)="onSubmit()" class="display-inline input-workspace-name" type="password" placeholder="Enter password">
+      </div>
+    </div>
+    <!--<i *ngIf="isLoading" class='fas fa-circle-notch fa-spin display-inline icon-create-workspace-loading'></i>-->
+    <label (click)="forgetPassword()" [ngStyle]="{'cursor': 'pointer'}" class="display-inline lbl-forget-password">Forget your password?</label>
+    <div class="display-inline" style="float: right">
+      <button [disabled]="isLoading" (click)="onSubmit()"  class="btn-create-workspace">
+        <div style="width: max-content;margin: 0 auto;">
+          <i *ngIf="isLoading" class='fas fa-2x fa-circle-notch fa-spin display-inline icon-create-workspace-loading'></i>
+          <p class="lbl-btn-create-workspace display-inline">Login</p>
+        </div>
+      </button>
+    </div>
+
+  </div>
+  <!-- Footer container -->
+  <!--<div class="div-footer-container">-->
+    <!--<div class="inline lbl-container">-->
+      <!--<a href="#"><label class="display-inline lbl-footer-item">Privacy</label></a>-->
+      <!--<label class="display-inline lbl-footer-item">Policy</label>-->
+      <!--<label class="display-inline lbl-footer-item">Contact</label>-->
+      <!--<label class="display-inline lbl-footer-item">© Uiza . All rights reserved.</label>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>
+</div>

@@ -1,0 +1,21 @@
+<div class="row data-smart-plus">
+  <div *ngFor="let source of sources,let idx=index" class="dataplus-group col-md-12 form-group">
+    <div class="row">
+      <div *ngFor="let column of settings.columns" class="col-md-{{column.col}}" [ngSwitch]='column.type'>
+        <input [disabled]="disabled"  *ngSwitchDefault type="text" class="form-control {{checkValid(source[column.key],column.key,idx)}}" id="{{column.key}}" placeholder="{{column.placeholder}}"
+                [(ngModel)]='source[column.key]'>
+        <div *ngSwitchCase='"dropdownSelect"'>
+          <ng-select [ngStyle]="{'border': (checkValid(source[column.key],column.key,idx)=='is-invalid'?'1px solid red':'')}" *ngIf="!disabled" [items]='column.settings.keyList'  bindLabel="{{column.settings.bindLabel}}" bindValue="{{column.settings.bindValue}}"  [(ngModel)]='source[column.key]' (change)='column.onChange($event)'
+                     placeholder="{{column.settings.placeholder}}" notFoundText="{{column.settings.notFoundText}}">
+          </ng-select>
+          <input *ngIf="disabled" [disabled]="disabled"  type="text" class="form-control" placeholder="{{column.placeholder}}"
+                 [(ngModel)]='source[column.key]'>
+        </div>
+      </div>
+      <div *ngIf="!disabled" class="col-md-1 text-center pd-5">
+        <i class="icon icon-add pointer mr-right-10" (click)="addNewValue()"></i>
+        <i [ngStyle]="sources.length==1?{'visibility': 'hidden'}:''" class="icon icon-minimize pointer" (click)="minusOldValue(source)"></i>
+      </div>
+    </div>
+  </div>
+</div>

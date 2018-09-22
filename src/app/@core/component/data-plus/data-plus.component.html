@@ -1,0 +1,7 @@
+<div class="row dataplus">
+  <div *ngFor="let source of sources" class="dataplus-group col-md-4 form-group">
+    <input [(ngModel)]="source.value" [value]="source.value" type="text" class="form-control" placeholder="Email" >
+    <i class="icon icon-add pointer pd-5" (click)="addNewValue()"></i>
+    <i [ngStyle]="sources.length==1?{'visibility': 'hidden'}:''" class="icon icon-minimize pointer pd-5" (click)="minusOldValue(source)"></i>
+  </div>
+</div>

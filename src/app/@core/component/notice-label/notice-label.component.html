@@ -1,0 +1,20 @@
+<section *ngIf="source" class="uiza-notice-label mb-3">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class='notice-container p-3' [ngClass]="source.type">
+        <div class="row">
+          <div class="col-xl-10 notice-title">
+            {{source.title}}
+          </div>
+          <div class="col-xl-2 button-container">
+            <button *ngIf="source.button" class="btn btn-edit pull-right" (click)='source.onClick()'>
+            <span class="notice-message">{{source.buttonName}}</span></button>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-xl-12">{{source.value}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

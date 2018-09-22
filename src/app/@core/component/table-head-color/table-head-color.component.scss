@@ -1,0 +1,24 @@
+@import "../../../../assets/style/index";
+.table-head-color {
+  height: 38px;
+  border-radius: convert-px-rem(4);
+  display: flex;
+  margin-bottom: convert-px-rem(10);
+
+  .table-title {
+    color: #FFFFFF;
+    font-size: convert-px-rem(12);
+    line-height: convert-px-rem(38);
+  }
+
+  .title-total {
+    font-size: convert-px-rem(14);
+  }
+
+  .text-align-center {
+    text-align: center;
+  }
+  .text-align-right {
+    text-align: right;
+  }
+}

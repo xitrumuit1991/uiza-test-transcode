@@ -1,0 +1,64 @@
+@import "../../../../assets/style/index";
+
+.uiza-switch {
+  position: relative;
+  display: inline-block;
+  width: convert-px-rem(40);
+  height: convert-px-rem(20);
+  margin: 0;
+}
+
+.uiza-switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: convert-px-rem(17);
+  width: convert-px-rem(17);
+  left: convert-px-rem(2);
+  bottom: convert-px-rem(2);
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: $color-purple-heart;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 convert-px-rem(1) $color-purple-heart;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(convert-px-rem(19));
+  -ms-transform: translateX(convert-px-rem(19));
+  transform: translateX(convert-px-rem(19));
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: convert-px-rem(34);
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+

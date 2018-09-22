@@ -1,0 +1,29 @@
+@import "../../../../assets/style/index";
+
+.uiza-pagination {
+  margin:  convert-px-rem(6)  convert-px-rem(5);
+  ::ng-deep .page-link {
+    border: 0;
+  }
+  ::ng-deep {
+    .page-link {
+      color: $color-regent-gray;
+    }
+  }
+  ::ng-deep .page-item {
+    .page-link {
+      -webkit-border-radius: convert-px-rem(5);
+      -moz-border-radius: convert-px-rem(5);
+      border-radius: convert-px-rem(5);
+      margin: 0 convert-px-rem(5);
+      padding: convert-px-rem(4) convert-px-rem(8);
+    }
+    &.active {
+      .page-link {
+        color: $color-white;
+        background-color: $color-purple-heart;
+        border-color: $color-purple-heart;
+      }
+    }
+  }
+}

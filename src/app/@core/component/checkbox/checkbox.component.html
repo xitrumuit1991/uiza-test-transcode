@@ -1,0 +1,6 @@
+<label class="uiza-checkbox single">
+  <input type="checkbox" [attr.name]="name || 'uiza'" (change)="onChange($event)" checked="{{uizaModel ? 'checked' :''}}">
+  <span class="checkmark"></span>
+  <span *ngIf="title" class="font-12">{{title}}</span>
+</label>
+

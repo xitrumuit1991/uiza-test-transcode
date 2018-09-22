@@ -1,0 +1,37 @@
+<div class="permission-list row " *ngIf="source.on===true" >
+  <div class="col-md-12">
+    <div class="row group-items">
+      <div class="col-md-10">
+        <div class="row group-title">
+          <div class="col-md-12">{{source.groupTitle}}</div>
+        </div>
+        <div class="row group-description">
+          <div class="col-md-12">{{source.groupDescription}}</div>
+        </div>
+      </div>
+      <div class="col-md-2 mr-top-5">
+        <app-uiza-checkbox  (uizaChange)="onSelectAll($event)"></app-uiza-checkbox>
+        <label style="vertical-align: sub">Select all</label>
+    </div>
+    </div>
+
+    <div class="row items-source">
+      <div *ngFor="let item of source.items" class="col-md-4 mr-top-10">
+        <div class="row">
+          <div class="col-md-4 item-permision">
+            <app-uiza-checkbox [(uizaModel)]="item.isSelected" (uizaChange)="onSelectChange($event,item)"></app-uiza-checkbox>
+            <label class="item-permision-title">{{item.title}}</label>
+          </div>
+          <div class="col-md-8">
+            <div class="item-permision-value">
+              {{item.value}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 item-permision-description">{{item.description}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

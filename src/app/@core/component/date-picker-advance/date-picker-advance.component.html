@@ -1,0 +1,26 @@
+<div class="row text-center">
+  <div class="col-md-4" *ngIf="settings.filtertime===true">
+    <div class="form-control">
+      <div class="row date-filter">
+        <span class="pointer col-md-2" (click)="week(1)">1w</span>
+        <span class="pointer col-md-2" (click)="week(4)">4w</span>
+        <span class="pointer col-md-2" (click)="year(1)">1y</span>
+        <span class="pointer col-md-2">Mtd</span>
+        <span class="pointer col-md-2">Qtd</span>
+        <span class="pointer col-md-2">Ytd</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <app-uiza-date-picker [settings]="settings.datepicker" (uizaChange)="datechange($event)"></app-uiza-date-picker>
+  </div>
+  <div class="col-md-2" *ngIf="settings.filterday===true">
+    <div class="form-control">
+      <div class="row date-filter">
+        <span class="pointer col-md-6">Day</span>
+        <span class="pointer col-md-6" >Week</span>
+      </div>
+    </div>
+  </div>
+
+</div>

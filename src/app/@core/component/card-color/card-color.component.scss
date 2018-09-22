@@ -1,0 +1,59 @@
+@import "../../../../assets/style/index";
+.uiza-header-color {
+    display: inline;
+    label {
+        margin: 0;
+    }
+    .content-middle {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .card-color {
+        border-radius: convert-px-rem(4);
+        position: relative;
+        .card-content {
+            padding: convert-px-rem(15);
+            overflow: hidden;
+            min-height: convert-px-rem(100);
+            .item-container {
+                width: 100%;
+            }
+            .card-title {
+                color: $color-white;
+                font-size: $font-14;
+                margin-bottom: convert-px-rem(10);
+            }
+            .card-plane {
+                opacity: 0.8;
+                color: #fff;
+                font-weight: 100;
+            }
+            .card-price {
+                height: convert-px-rem(25);
+                color: $color-white;
+                font-size: convert-px-rem(17);
+            }
+            .oval-1,
+            .oval-2 {
+                position: absolute;
+                transform: rotate(25deg);
+                border-radius: 50%;
+            }
+            .oval-1 {
+                height: convert-px-rem(110);
+                width: convert-px-rem(110);
+                opacity: 0.51;
+                margin-top: -14%;
+                left: -30%;
+            }
+            .oval-2 {
+                height: convert-px-rem(120);
+                width: convert-px-rem(120);
+                opacity: 0.41;
+                margin-top: 29%;
+                left: 65%;
+            }
+        }
+    }
+}

@@ -1,0 +1,228 @@
+<section class="uiza-smart-form">
+
+  <div class="row">
+    <ng-container *ngFor='let input of inputs;let idx=index'>
+
+      <div class="col-md-{{input.col || 12}}">
+        <div *ngIf="input.title" class="row">
+          <div class="col-md-6 {{input.title ?'':'mb-5'}} {{input.titleCol ? 'col-md-'+input.titleCol : ''}}">
+            <h6>{{input.title}}</h6>
+          </div>
+          <ng-container *ngIf='settings && settings.viewEnable && (settings.uniqueEdit != true || idx == inputs.length -(settings.viewEnableLength?settings.viewEnableLength:1)) && !!!settings.editDisable'>
+            <div *ngIf='settings.viewMode' class="col-md-6">
+              <button type="button" class="btn btn-sm btn-outline-light pull-right mb-4" (click)="onChangeMode()">
+                <i class="icon icon-edit"></i>
+                {{settings.viewText || 'Edit Content'}}
+              </button>
+            </div>
+            <div *ngIf='settings && !settings.viewMode' class="col-md-6">
+              <button type="button" class="btn btn-sm btn-outline-light pull-right mb-4" (click)='onChangeMode()'>{{settings.viewTextCancel || 'Cancel'}}</button>
+            </div>
+          </ng-container>
+          <div class="col-md-12">
+            <ng-content select="app-uiza-smart-form-control">
+            </ng-content>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <ng-container *ngFor='let body of input.body'>
+            <div class="col-md-{{settings.viewMode ? 12 : body.col || 12}}">
+              <fieldset [hidden]='settings.hiddenField && settings.hiddenField[body.key]' disabled='{{body.disable ? "disabled" : ""}}'>
+
+                <div class="form-group">
+
+                  <ng-container *ngIf='settings.viewEnable && settings.viewMode'>
+
+                    <div class="row" *ngIf="body.type !== 'colorPicker' && body.type != 'dataPlus'">
+                      <div class="col-md-5">
+                        <label *ngIf='body.title' for="{{body.key}}" [ngStyle]="{'font-weight': !!settings.strongKey ? '700' : '400'}">{{body.title}}</label>
+                      </div>
+
+
+                      <div class="col-md-7">
+                        <span *ngIf="body.type !== 'textEntityName' && body.type !== 'imageUpload'&& body.type !== 'dropdownSelect' && body.type !== 'inputGroup'" [innerHTML]="(body.valuePrepareFunction && body.valuePrepareFunction(source && source[body.key])) || source[body.key]"
+                          style="word-break: break-all" class="ellipsis-items"></span>
+                        <span *ngIf="body.type === 'textEntityName' && source && source[body.key]" class="ellipsis-items">{{source[body.key] | nameEntity}}</span>
+                        <span *ngIf="body.type === 'dropdownSelect' && source && source[body.key]" class="ellipsis-items">
+                          {{dataToString(source[body.key])}}
+                        </span>
+                        <span *ngIf="body.type === 'inputGroup' && source && source[body.key]" class="ellipsis-items">
+                          {{dataToString(source[body.key])?dataToString(source[body.key]):'All domains allowed'}}
+                        </span>
+                        <img *ngIf="body.type === 'imageUpload' && source && source[body.key]" [attr.src]="source[body.key] || '../../../../../assets/img/imageHolder.jpg'"
+                          style="width: 40%;" />
+                      </div>
+
+
+                    </div>
+                    <div class="row" *ngIf="body.type === 'dataPlus' && !body.hide">
+                      <div class="col-md-12">
+                        <app-uiza-data-smart-plus [disabled]="true" (uizaModelChange)="body.onChange ? body.onChange($event) : null" [name]='body.key' [(sources)]="source[body.key]"
+                                                  [settings]='body.settings' [required]="required"></app-uiza-data-smart-plus>
+                      </div>
+                    </div>
+
+                    <div class="row" *ngIf="body.type === 'colorPicker'">
+                      <div class="col-md-12">
+                        <label *ngIf='body.title' for="{{body.key}}" [ngStyle]="{'font-weight': !!settings.strongKey ? '700' : '400'}">{{body.title}}</label>
+                      </div>
+
+                      <div class="col-md-12">
+                        <ng-container *ngIf="body.type === 'colorPicker' && source && source[body.key]">
+                          <div class="row">
+                            <ng-container *ngFor="let item of source[body.key];let idx=index">
+                              <div class="color-content col">
+                                <Text class="color-name">{{item.title}}</Text>
+                                <div class="color-picker-content">
+                                  <div class="color-show border-slim" [ngStyle]="{'background-color': item.value}"></div>
+                                </div>
+                              </div>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+
+                    </div>
+                  </ng-container>
+
+                  <ng-container *ngIf='!settings.viewEnable || !settings.viewMode'>
+                    <div [ngClass]="body.flex === true?'row':''">
+                      <div [ngClass]="body.flex === true?'col-md-4':''" style="display: flex">
+                        <label *ngIf='body.title' for="{{body.key}}" [ngStyle]="{'line-height': body.flex===true ? '30px' : '', 'font-weight': !!settings.strongKey ? '700' : '400'}">{{body.title}}
+                          <span class=text-danger *ngIf='body.require'>*</span>
+                        </label>
+                        <small *ngIf='body.description' class="text-muted mr-left-15">{{body.description}}</small>
+                      </div>
+                      <div [ngClass]="body.flex === true?'col-md-8':''">
+                        <ng-container [ngSwitch]='body.type'>
+                          <div class="{{body.icon ?'input-group' :''}}">
+                            <div class="input-group-prepend" *ngIf='body.icon && !body.iconAfter'>
+                              <span (click)='body.iconFunction && body.iconFunction()' class="input-group-text {{body.iconClass}} pointer" [innerHTML]='body.icon'></span>
+                            </div>
+
+                            <input  *ngSwitchDefault type="text" class="form-control {{checkValid(body.key)}}" id="{{body.key}}" placeholder="{{body.placeholder}}"
+                                   [(ngModel)]='source[body.key]'>
+
+                            <input [disabled]="body.disabled" *ngSwitchCase='"date"' type="text" class="form-control {{checkValid(body.key)}}" id="{{body.key}}" placeholder="{{body.placeholder}}"
+                                   [value]='body.formatFunction ? body.formatFunction(source[body.key]) : source[body.key]'>
+                            <input [disabled]="body.disabled" *ngSwitchCase='"text"' type="text" class="form-control {{checkValid(body.key)}}" id="{{body.key}}" placeholder="{{body.placeholder}}"
+                                   [(ngModel)]='source[body.key]'>
+                            <input [disabled]="body.disabled" *ngSwitchCase='"email"' type="email" class="form-control {{checkValid(body.key)}}" id="{{body.key}}" placeholder="{{body.placeholder}}"
+                                   [(ngModel)]='source[body.key]'>
+                            <input [disabled]="body.disabled" *ngSwitchCase='"textEntityName"' type="text" class="form-control {{checkValid(body.key)}}" id="{{body.key}}" placeholder="{{body.placeholder}}"
+                                   [(ngModel)]='source[body.key]'>
+                            <input [disabled]="body.disabled" *ngSwitchCase='"password"' type="password" class="form-control {{checkValid(body.key)}}" id="{{body.key}}" placeholder="{{body.placeholder}}"
+                              [(ngModel)]='source[body.key]'>
+
+                            <textarea *ngSwitchCase='"textarea"' class="form-control {{checkValid(body.key)}}" id="{{body.key}}" rows="{{body.rows||5}}"
+                              placeholder="{{body.placeholder}}" [(ngModel)]='source[body.key]'></textarea>
+
+                            <select *ngSwitchCase='"select"' class="form-control {{checkValid(body.key)}}" id="{{body.key}}" [(ngModel)]='source[body.key]'
+                              (change)="body.onChange ? body.onChange(source[body.key]) : null ">
+                              <ng-container *ngFor="let selectValue of (body.values || [{title:'Default' ,value:0}])">
+                                <option [value]="selectValue[body.valueKey ||'value']">
+                                  {{selectValue[body.titleKey ||'title']}}
+                                </option>
+                              </ng-container>
+                            </select>
+                            <!--<div [attr.class]='body.class' (click)="body.valueClickFunction()" *ngSwitchCase="'custom'" [innerHTML]="(body.valuePrepareFunction && body.valuePrepareFunction(body.key,row, data)) || body.key"></div>-->
+                            <div [attr.class]='body.class' (click)="body.valueClickFunction()" *ngSwitchCase="'custom'">
+                              <div *ngIf="!body.hide" [innerHTML]="(body.valuePrepareFunction && body.valuePrepareFunction(body.key,row, data)) || body.key"></div>
+                            </div>
+
+                            <input *ngSwitchCase='"number"' type="number" class="form-control {{checkValid(body.key)}}" id="{{body.key}}" placeholder="{{body.placeholder}}"
+                              [(ngModel)]='source[body.key]'>
+
+                            <div *ngSwitchCase='"datePicker"'>
+                              <app-uiza-date-picker [name]='body.key' [settings]='body.settings'></app-uiza-date-picker>
+                            </div>
+
+                            <div *ngSwitchCase='"cuePointCampaign"'>
+                              <app-uiza-cue-point-campaign *ngIf="!body.hide" [name]='body.key' [settings]='body.settings' [(uizaModel)]="source[body.key]" [required]="required"></app-uiza-cue-point-campaign>
+                            </div>
+
+                            <div *ngSwitchCase='"multiCheckbox"'>
+                              <app-uiza-multi-checkbox [name]='body.key' [(uizaModel)]="source[body.key]" [settings]='body.settings'></app-uiza-multi-checkbox>
+                            </div>
+
+                            <div *ngSwitchCase='"checkbox"'>
+                              <app-uiza-checkbox [(uizaModel)]="source[body.key]" [title]="body.settings?body.settings.title:null"></app-uiza-checkbox>
+                            </div>
+
+                            <div *ngSwitchCase="'uploadFile'">
+                              <app-uiza-upload-static [config]="body.config"></app-uiza-upload-static>
+                            </div>
+
+                            <div *ngSwitchCase='"multiRadio"'>
+                              <app-uiza-multi-radio *ngIf="!body.hide" (uizaModelChange)="body.onChange ? body.onChange($event) : null" [name]='body.key' [(uizaModel)]="source[body.key]"
+                                [settings]='body.settings'></app-uiza-multi-radio>
+                            </div>
+
+                            <div *ngSwitchCase='"dataPlus"'>
+                              <app-uiza-data-smart-plus *ngIf="!body.hide" (uizaModelChange)="body.onChange ? body.onChange($event) : null" [name]='body.key' [(sources)]="source[body.key]"
+                                                    [settings]='body.settings' [required]="required"></app-uiza-data-smart-plus>
+                            </div>
+
+                            <div *ngSwitchCase='"toggleSwitch"'>
+                              <app-uiza-toggle-switch [(uizaModel)]="source[body.key]" [settings]='body.settings'></app-uiza-toggle-switch>
+                            </div>
+
+                            <div *ngSwitchCase='"dropdownSelect"'>
+                              <ng-select *ngIf="!body.hide" [items]='source[body.keyList]' [virtualScroll]='body.settings.virtualScroll' bindLabel="{{body.settings.bindLabel}}" [multiple]='body.settings.isMultiple' [(ngModel)]='source[body.key]'
+                                         (change)='body.onChange($event)'
+                                         (keyup)="body.keyUp?body.keyUp($event):null"
+                                         (keydown)="body.keyChange?body.keyChange($event):null"
+                                         (add)="body.select?body.select($event):null"
+                                         (close)="body.close?body.close():null"
+                                         placeholder="{{body.settings.placeholder}}" notFoundText="{{body.settings.notFoundText}}">
+                              </ng-select>
+                            </div>
+
+                            <div *ngSwitchCase='"imageUpload"'>
+                              <app-uiza-upload-static [config]="body.config"></app-uiza-upload-static>
+                            </div>
+
+                            <div *ngSwitchCase='"colorPicker"'>
+                              <app-uiza-color-picker [(uizaModel)]="source[body.key]"></app-uiza-color-picker>
+                            </div>
+
+                            <div *ngSwitchCase='"inputGroup"'>
+                              <app-uiza-group-input [(uizaModel)]="source[body.key]"></app-uiza-group-input>
+                            </div>
+
+                            <div class="input-group-prepend" *ngIf='body.icon && body.iconAfter'>
+                              <span (click)='body.iconFunction && body.iconFunction()' class="input-group-text {{body.iconClass}} pointer" [innerHTML]='body.icon'></span>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </fieldset>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+
+
+    </ng-container>
+    <ng-container *ngIf='!settings.viewEnable || !settings.viewMode'>
+      <div class="col-md-12">
+        <ul class="display-inline" [ngClass]="{'text-center': settings.buttonCenter}">
+          <li *ngFor="let btn of settings.buttons">
+            <button type="button" class="{{btn.class}}" (click)="btn.action()">{{btn.title}}</button>
+          </li>
+          <li *ngIf="!settings.submitDisable">
+            <button [disabled]="settings.submitDisabled" type="button" class="btn btn-primary btn-sm" (click)='onSubmit()'>{{settings.submitBtn || 'Submit'}}</button>
+          </li>
+        </ul>
+
+      </div>
+    </ng-container>
+  </div>
+</section>
+<!--[ngClass]="body.flex === true?'col-md-4':''"-->

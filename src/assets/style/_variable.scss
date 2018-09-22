@@ -1,0 +1,32 @@
+$color-white: #fff;
+$color-purple-heart: #722FD6;
+$color-purple-heart-light: #a155d6;
+$color-dodger-blue: #489BFC;
+$color-green: #00b4a0;
+$color-catskill-white: #F4F7F9;
+$color-athens-gray: #F0F3F6;
+$color-geyser: #dfe3e6;
+$color-regent-gray: #77909D;;
+$color-big-stone: #152935;
+$color-shuttle-gray: #5a6872;
+$color-monza: #E88787;
+$color-monza-light: #e89e8a;
+$color-limeade: #77C32D;
+$color-limeade-light: #8fc34c;
+$color-buttercup: #F5A623;
+$color-malibu: #6CD5E1;
+$color-malibu-light: #76dde1;
+$color-text: #515659;
+
+@function convert-px-rem($pixel) {
+  @return $pixel/16 + rem;
+}
+
+$font-12: convert-px-rem(12);
+$font-14: convert-px-rem(14);
+$font-16: convert-px-rem(16);
+$font-18: convert-px-rem(18);
+$font-20: convert-px-rem(20);
+$font-22: convert-px-rem(22);
+
+

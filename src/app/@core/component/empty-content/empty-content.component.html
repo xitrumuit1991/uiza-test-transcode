@@ -1,0 +1,5 @@
+<div class="uiza-empty-content">
+  <i class="icon {{settings.icon || 'icon-noreview'}}"></i>
+  <p>{{settings.textEmpty || "You don't have any data about Usage"}}</p>
+  <button type="button" class="btn btn-primary" *ngIf="settings.createNew === false ? false : true  && settings.createNewFunction" (click)='settings.createNewFunction()'>{{settings.createNewTitle || 'Create New'}}</button>
+</div>

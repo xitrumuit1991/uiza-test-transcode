@@ -1,0 +1,51 @@
+<div class="upload-static {{config.class}}" *ngIf="!config.avatar">
+  <div *ngIf="!dataImage || !!config.hideImage">
+    <input (change)="fileChanged($event)" type="file" id="upfile" style="display: none;"/>
+    <label for="upfile" class="uploadfile pointer">
+      <span class="choose-file">
+      <i class="icon icon-upload"></i>
+      {{config.title || "Choose files to upload"}}
+      </span>
+    </label>
+    <!--<div class="progress-bar progress-bar-striped progress-bar-animated"-->
+
+    <div class="progress-bar progress-bar-striped"
+         *ngIf="config.showProgressBar"
+         [ngStyle]="{'width': progressLoading+'%'}"
+    ></div>
+  </div>
+  <div *ngIf="dataImage">
+    <input (change)="fileChanged($event)" type="file" id="upfile2" style="display: none;"/>
+    <label *ngIf="!!!config.hideImage" for="upfile2" class="pointer">
+      <img [attr.src]="dataImage.url || '../../../../assets/img/imageHolder.jpg'"/></label>
+    <span>{{dataImage.key}}</span>
+  </div>
+</div>
+<div class="full-width upload-static {{config.class}}" *ngIf="config.avatar">
+  <div *ngIf="!dataImage || !!config.hideImage">
+    <input (change)="fileChanged($event)" type="file" id="upfileavatar" style="display: none;"/>
+    <label *ngIf="config.value==''" for="upfileavatar" class="uploadfile pointer full-width" [change]="changeAva()">
+      <span class="choose-avatar" >
+      <i class="icon-user"></i>
+      </span>
+      <p class="title-avatar pd-top-10">{{config.title || "Update avatar"}}</p>
+    </label>
+    <label *ngIf="config.value!=''" for="upfileavatar" class="uploadfile pointer full-width" >
+      <span class="choose-avatar" [ngStyle]="{'background-image': 'url('+config.value +')'}"  [change]="changeAva()">
+      </span>
+      <p class="title-avatar pd-top-10">{{config.title || "Update avatar"}}</p>
+    </label>
+    <div class="progress-bar progress-bar-striped"
+         *ngIf="config.showProgressBar"
+         [ngStyle]="{'width': progressLoading+'%'}"
+    ></div>
+  </div>
+  <div *ngIf="dataImage">
+    <input (change)="fileChanged($event)" type="file" id="upfileavatar2" style="display: none;"/>
+    <label for="upfileavatar2" class="uploadfile pointer full-width">
+      <span class="choose-avatar" [ngStyle]="{'background-image': 'url('+dataImage.url +')'}"  [change]="changeAva()">
+      </span>
+      <p class="title-avatar pd-top-10">{{config.title || "Update avatar"}}</p>
+    </label>
+  </div>
+</div>

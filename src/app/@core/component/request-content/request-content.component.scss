@@ -1,0 +1,52 @@
+@import "../../../../assets/style/index";
+
+//.request-content{
+//  height: 258px;
+//  overflow: auto;
+//  p{
+//    color: #6B6E70;
+//  }
+//  .text-content{
+//    padding: 10px;
+//    background-color: #F0F3F7;
+//  }
+//}
+
+.request-content {
+  margin-bottom: convert-px-rem(20);
+  background: $color-white;
+  border-radius: convert-px-rem(4);
+  box-shadow: 0 convert-px-rem(5) convert-px-rem(15) 0 rgba(51, 59, 74, 0.03);
+  &-header {
+    min-height: convert-px-rem(50);
+    box-sizing: border-box;
+    padding: convert-px-rem(10) convert-px-rem(20);
+  }
+  &-content {
+    padding: convert-px-rem(10) convert-px-rem(20);
+  }
+  ::ng-deep &-description {
+    color: #000000;
+    font-weight: 200;
+  }
+  ::ng-deep &-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+  }
+  ::ng-deep &-subtitle {
+    color: #722FD6;
+    font-size: 12px;
+    line-height: 15px;
+  }
+  ::ng-deep &-subtitle-method {
+    color: #FFFFFF;
+    border-radius: 30px;
+    background-color: #722FD6;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+
+}

@@ -1,0 +1,10 @@
+<div class="square-box">
+  <div class="select-box  text-center font-12">
+        <img class="height-60" [src]="sanitizer.bypassSecurityTrustResourceUrl(item.src)">
+        <div class="pd-top-25 title">{{item.title}}</div>
+        <div class="sub-title">{{item.description}}</div>
+        <button class="btn font-12" *ngIf="item.href" (click)="navigate(item.href)">{{item.button}}</button>
+        <button class="btn font-12" *ngIf="item.hrefOut" (click)="onNavigate(item.hrefOut)">{{item.button}}</button>
+      </div>
+</div>
+

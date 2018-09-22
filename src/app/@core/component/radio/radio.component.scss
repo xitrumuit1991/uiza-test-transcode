@@ -1,0 +1,80 @@
+@import "../../../../assets/style/index";
+.uiza-radio {
+    position: relative;
+    padding-left: convert-px-rem(30);
+    padding-right: convert-px-rem(25);
+    &:last-child {
+        padding-right: 0;
+    }
+    cursor: pointer;
+    font-size: convert-px-rem(22);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .label {
+        font-size: $font-12;
+    }
+}
+
+/* Hide the browser's default radio */
+
+/* Create a custom radio */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: convert-px-rem(20);
+    width: convert-px-rem(20);
+    border-radius: 50%;
+    background-color: transparent;
+    border: convert-px-rem(1) solid #DFE3E6;
+}
+
+/* On mouse-over, add a grey background color */
+
+.uiza-radio:hover input~.checkmark {
+    background-color: #DFE3E6;
+}
+
+/* When the radio is checked, add a blue background */
+
+.uiza-radio input:checked~.checkmark {
+    background-color: $color-purple-heart;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+
+.uiza-radio input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+
+.uiza-radio .checkmark:after {
+    width: convert-px-rem(8);
+    height: convert-px-rem(8);
+    background: white;
+    border-radius: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    top: 50%;
+}
+.radio-description {
+  width: 100%;
+}
