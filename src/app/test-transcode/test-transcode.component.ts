@@ -3,8 +3,9 @@ import * as XLSX from 'ts-xlsx';
 import * as _ from 'lodash';
 import {ApiService, UtilService, UserService} from "../@service/index";
 import {Router} from "@angular/router";
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {BsModalRef} from 'ngx-bootstrap/modal/bs-modal-ref.service';
+
 declare let videojs: any;
 
 @Component({
@@ -24,7 +25,7 @@ export class UizaTestTranscodeComponent implements OnInit {
     app_id: '4b225efbe2fc4cc7826327fbb21aaab5'
   };
   idInterval: any;
-  playerOptions :any = {
+  playerOptions: any = {
     ratio: '16:9',
     streamType: 'url',
     url: 'https://vm2.dashif.org/livesim/testpic_2s/Manifest.mpd'
@@ -43,7 +44,7 @@ export class UizaTestTranscodeComponent implements OnInit {
     },
     show: () => {
       // clearInterval(this.intervalIds);
-      this.bsModalRef = this.modalService.show(this.templateModal, { backdrop: true, ignoreBackdropClick: true });
+      this.bsModalRef = this.modalService.show(this.templateModal, {backdrop: true, ignoreBackdropClick: true});
     },
     hide: () => {
       // this.initData();
@@ -51,69 +52,60 @@ export class UizaTestTranscodeComponent implements OnInit {
     }
   };
 
-  @Input() source: object = [{
-    "id": "110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2",
-    "name": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
-    "description": null,
-    "shortDescription": null,
-    "inputType": "http",
-    "url": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
-    "masterTaskId": "4e93fc9e-6b82-4f06-a816-e14b030288a1",
-    "masterProgress": "success",
-    "standardTaskId": "416a67b8-e479-48b4-84a0-cfaf493f2f07",
-    "standardProgress": "success",
-    "view": 0,
-    "poster": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
-    "thumbnail": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
-    "type": "vod",
-    "status": 2,
-    "duration": "483.392000",
-    "readyToPublish": "on",
-    "embedMetadata": null,
-    "extendMetadataId": null,
-    "publishToCdn": "success",
-    "extendMetadata": null,
-    "createdAt": "2018-09-22T12:21:09.000Z",
-    "updatedAt": "2018-09-22T12:21:09.000Z",
-    "publishStatus" : {progress: 100, status: "success"},
-    "linkplay":{
-      "urls": [
-        {
-          "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/playlist.m3u8",
-          "support": "hls",
-          "codec": [
-            "h264",
-            "h265"
-          ],
-          "type": "stream",
-          "region": "ap-southeast-1",
-          "priority": 1
-        },
-        {
-          "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/manifest.mpd",
-          "support": "mpd",
-          "codec": [
-            "h264",
-            "h265"
-          ],
-          "type": "stream",
-          "region": "ap-southeast-1",
-          "priority": 1
-        },
-        {
-          "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/playlist_ts.m3u8",
-          "support": "hls_ts",
-          "codec": [
-            "h264",
-            "h265"
-          ],
-          "type": "stream",
-          "region": "ap-southeast-1",
-          "priority": 1
-        }
-      ]
-    }
-  }];
+  @Input() source: object = [
+    // {
+    //   "id": "110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2",
+    //   "name": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
+    //   "description": null,
+    //   "shortDescription": null,
+    //   "inputType": "http",
+    //   "url": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
+    //   "masterTaskId": "4e93fc9e-6b82-4f06-a816-e14b030288a1",
+    //   "masterProgress": "success",
+    //   "standardTaskId": "416a67b8-e479-48b4-84a0-cfaf493f2f07",
+    //   "standardProgress": "success",
+    //   "view": 0,
+    //   "poster": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
+    //   "thumbnail": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
+    //   "type": "vod",
+    //   "status": 2,
+    //   "duration": "483.392000",
+    //   "readyToPublish": "on",
+    //   "embedMetadata": null,
+    //   "extendMetadataId": null,
+    //   "publishToCdn": "success",
+    //   "extendMetadata": null,
+    //   "createdAt": "2018-09-22T12:21:09.000Z",
+    //   "updatedAt": "2018-09-22T12:21:09.000Z",
+    //   "publishStatus": {progress: 100, status: "success"},
+    //   "linkplay": {
+    //     "urls": [
+    //       {
+    //         "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/playlist.m3u8",
+    //         "support": "hls",
+    //         "codec": [
+    //           "h264",
+    //           "h265"
+    //         ],
+    //         "type": "stream",
+    //         "region": "ap-southeast-1",
+    //         "priority": 1
+    //       },
+    //       {
+    //         "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/manifest.mpd",
+    //         "support": "mpd",
+    //         "codec": [
+    //           "h264",
+    //           "h265"
+    //         ],
+    //         "type": "stream",
+    //         "region": "ap-southeast-1",
+    //         "priority": 1
+    //       }
+    //     ]
+    //   }
+    // }
+  ];
   @Input() settings: any = {
     emptyContent: null,
     display: {
@@ -153,10 +145,10 @@ export class UizaTestTranscodeComponent implements OnInit {
     },
     defaultHeaderClass: 'text-left',
     columns: {
-      id: { title: 'id', type: 'string', },
-      name: { title: 'name', type: 'string',  },
-      url: { title: 'url', type: 'string',  },
-      thumbnail:{
+      id: {title: 'id', type: 'string',},
+      name: {title: 'name', type: 'string',},
+      url: {title: 'url', type: 'string',},
+      thumbnail: {
         title: 'thumbnail',
         type: 'custom',
         valuePrepareFunction: (data) => {
@@ -165,27 +157,27 @@ export class UizaTestTranscodeComponent implements OnInit {
           return `<img src="../../../../assets/img/image-not-available.jpg" width='auto' height='100'/><br><span>${data}</span>`;
         }
       },
-      type: { title: 'type', type: 'string',  },
-      inputType: { title: 'inputType', type: 'string'},
-      masterTaskId: { title: 'masterTaskId', type: 'string'},
-      standardTaskId: { title: 'standardTaskId', type: 'string'},
-      masterProgress: { title: 'masterProgress', type: 'string'},
-      standardProgress: { title: 'standardProgress', type: 'string'},
-      duration: { title: 'duration', type: 'string'},
-      status:{
+      type: {title: 'type', type: 'string',},
+      inputType: {title: 'inputType', type: 'string'},
+      masterTaskId: {title: 'masterTaskId', type: 'string'},
+      standardTaskId: {title: 'standardTaskId', type: 'string'},
+      masterProgress: {title: 'masterProgress', type: 'string'},
+      standardProgress: {title: 'standardProgress', type: 'string'},
+      duration: {title: 'duration', type: 'string'},
+      status: {
         title: 'status',
         type: 'custom',
         valuePrepareFunction: (data) => {
           let badge = [
-            { color: 'danger', title: '0 - Inactive' },  //0
-            { color: 'success', title: '1 - Active' },    //1
-            { color: 'success', title: '2 - Active' },    //2
-            { color: 'success', title: '3 - Active' },    //3
+            {color: 'danger', title: '0 - Inactive'},  //0
+            {color: 'success', title: '1 - Active'},    //1
+            {color: 'success', title: '2 - Active'},    //2
+            {color: 'success', title: '3 - Active'},    //3
           ];
           return `<span class="badge badge-pill badge-${badge[data].color}">${badge[data].title}</span>`;
         }
       },
-      publishStatus:{
+      publishStatus: {
         title: 'publishStatus',
         type: 'custom',
         valuePrepareFunction: (value, index, data) => {
@@ -194,16 +186,16 @@ export class UizaTestTranscodeComponent implements OnInit {
           return `<span>${JSON.stringify(value)}</span>`;
         }
       },
-      readyToPublish:{ title: 'readyToPublish', type: 'string'},
-      publishToCdn:{ title: 'publishToCdn', type: 'string'},
-      player:{
+      readyToPublish: {title: 'readyToPublish', type: 'string'},
+      publishToCdn: {title: 'publishToCdn', type: 'string'},
+      player: {
         title: 'Player',
         type: 'player',
-        click: ($event,data,key) => {
+        click: ($event, data, key) => {
           console.log('player', data);
           // console.log('data.linkplay', data.linkplay);
           // console.log('data.linkplay.urls', data.linkplay.urls);
-          if(data && data.linkplay && data.linkplay.urls && data.linkplay.urls[0]){
+          if (data && data.linkplay && data.linkplay.urls && data.linkplay.urls[0]) {
             this.playerOptions.url = data.linkplay.urls[0].url;
           }
           this.modalObject.show();
@@ -217,7 +209,7 @@ export class UizaTestTranscodeComponent implements OnInit {
   };
 
   async onDeleteItem(data) {
-    if(data && data.id){
+    if (data && data.id) {
       try {
         // await this.apiService.api.ucc.customerOrigin.delete(data);
         this.utilService.notify('Delete Status', 'Delete success', 'success');
@@ -302,7 +294,7 @@ export class UizaTestTranscodeComponent implements OnInit {
         url: this.setting.domain + "api/private/v3/media/entity",
         data: tmpFile,
         success: (data) => {
-          console.log('createEntity',data);
+          console.log('createEntity', data);
           if (data && data.data)
             return resolve(_.extend(dataExcel, data.data));
           return resolve(data);
@@ -445,7 +437,7 @@ export class UizaTestTranscodeComponent implements OnInit {
       console.log('start interval');
       for (let i = 0; i < this.data.length; i++) {
         let oneData = this.data[i];
-        if(oneData && oneData.id){
+        if (oneData && oneData.id) {
           //get entity detail
           try {
             this.data[i] = await this.getEntity(oneData);
@@ -468,7 +460,7 @@ export class UizaTestTranscodeComponent implements OnInit {
     }, 5000);
   }
 
-  viewPlayer(data){
+  viewPlayer(data) {
     console.log('viewPlayer', data);
   }
 
