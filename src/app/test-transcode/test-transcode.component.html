@@ -1,3 +1,36 @@
+<ng-template #templateModal>
+  <div>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{modalObject.title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalObject.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body pd-20 text-center">
+      <app-uiza-player [options]="playerOptions">
+        <!--streamType: 'live',-->
+        <!--appId: '4c273af2724f45738693ab682927acb2',-->
+        <!--entityId: 'c7e97d37-a99c-4625-bbd7-2f35cf71a9a9',-->
+        <!--streamName: 'live-ytb',-->
+        <!--region: 'ap-southeast-1'-->
+      </app-uiza-player>
+      <!--<video id="my_video_1" crossorigin="anonymous" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" preload="auto" controls>-->
+        <!--<source src="{{playerOptions.url}}" type="application/x-mpegURL">-->
+      <!--</video>-->
+    </div>
+    <div class="modal-footer">
+      <div class="text-center w-100">
+        <button type="button" class="btn btn-secondary mr-right-20" (click)="modalObject.cancel()">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" (click)="modalObject.confirm()">Delete</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+
 <app-uiza-menu-top></app-uiza-menu-top>
 <section class="uiza-body">
   <app-uiza-menu-left></app-uiza-menu-left>
@@ -66,7 +99,12 @@
               <app-uiza-card-content>
                 <div class="row">
                   <div class="col-md-12">
-                    list entity
+                    <app-uiza-smart-table
+                      [source]='source'
+                      [settings]='settings'
+                      (searchChange)='null'
+                      (deleteItem)='onDeleteItem($event)'>
+                    </app-uiza-smart-table>
                   </div>
                 </div>
               </app-uiza-card-content>

@@ -53,6 +53,9 @@
               <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'checkbox'">
                 <app-uiza-checkbox [name]="key" [(checked)]="data[key]" (uizaChange)="settings.columns[key].onChange($event,data,key)"></app-uiza-checkbox>
               </td>
+              <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'player'">
+                <i class="icon icon-stream pointer" (click)="settings.columns[key].click($event,data,key)"></i>
+              </td>
               <td [attr.class]='settings.columns[key].class' scope="col" *ngSwitchCase="'radio'">
                 <app-uiza-radio [name]="key"></app-uiza-radio>
               </td>
