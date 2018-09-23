@@ -278,7 +278,7 @@ export class UizaTestTranscodeComponent implements OnInit {
     if (!dataExcel)
       return console.error('empty dataexcel', dataExcel);
     let tmpFile = {
-      "name": dataExcel.name || dataExcel.url,
+      "name": dataExcel.name.trim() || dataExcel.title.trim() || dataExcel.url.trim(),
       "url": dataExcel.url,
       "inputType": "http",
       "type": "vod",
