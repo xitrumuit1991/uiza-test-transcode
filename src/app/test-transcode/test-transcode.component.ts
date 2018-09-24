@@ -28,7 +28,7 @@ export class UizaTestTranscodeComponent implements OnInit {
   playerOptions: any = {
     ratio: '16:9',
     streamType: 'url',
-    url: 'https://vm2.dashif.org/livesim/testpic_2s/Manifest.mpd'
+    url: 'http://vm2.dashif.org/livesim/testpic_2s/Manifest.mpd'
   };
 
   bsModalRef: BsModalRef;
@@ -192,18 +192,28 @@ export class UizaTestTranscodeComponent implements OnInit {
       player: {
         title: 'Player',
         type: 'player',
-        click: ($event, data, key) => {
-          console.log('player', data);
+        click: async ($event, data, key) => {
+          console.log('click player', data);
           // console.log('data.linkplay', data.linkplay);
           // console.log('data.linkplay.urls', data.linkplay.urls);
+          if(data && !data.publishStatus )
+            return this.utilService.notifyError('Publish CDN not done');
+          if(data && data.publishStatus && (data.publishStatus.status !=='success' || data.publishStatus.progress  < 100 ) )
+            return this.utilService.notifyError('Publish CDN not done');
+          try{
+            let tokenPlayer = await this.getTokenPlayer(data);
+            let dataAfterGetlinkplay = await this.getLinkPlay(data, tokenPlayer);
+            console.log('dataAfterGetlinkplay',dataAfterGetlinkplay);
+            data = dataAfterGetlinkplay;
+          }catch(error){
+            console.error(error);
+          }
           if (data && data.linkplay && data.linkplay.urls && data.linkplay.urls[0]) {
             this.playerOptions.url = data.linkplay.urls[0].url;
+          }else if (data && data.linkplay && data.linkplay.urls && data.linkplay.urls[1]) {
+            this.playerOptions.url = data.linkplay.urls[1].url;
           }
           this.modalObject.show();
-          // let player = videojs('my_video_1');
-          // setTimeout(()=>{
-          //   let player = videojs('my_video_1');
-          // },2000);
         }
       }
     },
@@ -425,9 +435,34 @@ export class UizaTestTranscodeComponent implements OnInit {
       });
     });
   }
-
-  getLinkPlay(item) {
+  getTokenPlayer(item){
     let token = this.setting.token;
+    let app_id = this.setting.app_id;
+    return new Promise((resolve, reject) => {
+      if (item && item.publishStatus && (item.publishStatus.progress === 100 && item.publishStatus.status === 'success' )) {
+        $.ajax({
+          type: "POST",
+          data:{
+            "entity_id":item.id,"app_id":app_id,"content_type":"stream"
+          },
+          beforeSend: function (request) {
+            request.setRequestHeader("Authorization", token);
+          },
+          url: this.setting.domain + "api/public/v3/media/entity/playback/token",
+          success: function (data) {
+            console.log('getTokenPlayer', data);
+            return resolve(data.data.token);
+          },
+          error: function (data) {
+            return reject(data);
+          }
+        });
+      } else {
+        return reject('Item not publish cdn success');
+      }
+    });
+  }
+  getLinkPlay(item, tokenPlayer) {
     if (item && (!item.publishStatus || item.publishStatus.progress !== 100 || item.publishStatus.status !== 'success' )) {
       return 'Item not publish cdn success';
     }
@@ -436,7 +471,7 @@ export class UizaTestTranscodeComponent implements OnInit {
         $.ajax({
           type: "GET",
           beforeSend: function (request) {
-            request.setRequestHeader("Authorization", token);
+            request.setRequestHeader("Authorization", tokenPlayer);
           },
           url: `${this.setting.env === "staging" ? "https://stag-ucc.uiza.io/" : "https://ucc.uiza.io/" }api/private/v1/cdn/linkplay?entity_id=${item.id}&app_id=${this.setting.app_id}&type_content=stream`,
           success: function (data) {
