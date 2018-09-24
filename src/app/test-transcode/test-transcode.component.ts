@@ -36,6 +36,7 @@ export class UizaTestTranscodeComponent implements OnInit {
   modalObject = {
     title: 'Player testing',
     message: 'Player testing',
+    class: 'modal-lg-social',
     confirm: () => {
     },
     cancel: () => {
@@ -44,7 +45,7 @@ export class UizaTestTranscodeComponent implements OnInit {
     },
     show: () => {
       // clearInterval(this.intervalIds);
-      this.bsModalRef = this.modalService.show(this.templateModal, {backdrop: true, ignoreBackdropClick: true});
+      this.bsModalRef = this.modalService.show(this.templateModal, {backdrop: true, ignoreBackdropClick: true, class: 'modal-lg-social'});
     },
     hide: () => {
       // this.initData();
@@ -53,58 +54,58 @@ export class UizaTestTranscodeComponent implements OnInit {
   };
 
   @Input() source: object = [
-    // {
-    //   "id": "110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2",
-    //   "name": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
-    //   "description": null,
-    //   "shortDescription": null,
-    //   "inputType": "http",
-    //   "url": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
-    //   "masterTaskId": "4e93fc9e-6b82-4f06-a816-e14b030288a1",
-    //   "masterProgress": "success",
-    //   "standardTaskId": "416a67b8-e479-48b4-84a0-cfaf493f2f07",
-    //   "standardProgress": "success",
-    //   "view": 0,
-    //   "poster": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
-    //   "thumbnail": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
-    //   "type": "vod",
-    //   "status": 2,
-    //   "duration": "483.392000",
-    //   "readyToPublish": "on",
-    //   "embedMetadata": null,
-    //   "extendMetadataId": null,
-    //   "publishToCdn": "success",
-    //   "extendMetadata": null,
-    //   "createdAt": "2018-09-22T12:21:09.000Z",
-    //   "updatedAt": "2018-09-22T12:21:09.000Z",
-    //   "publishStatus": {progress: 100, status: "success"},
-    //   "linkplay": {
-    //     "urls": [
-    //       {
-    //         "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/playlist.m3u8",
-    //         "support": "hls",
-    //         "codec": [
-    //           "h264",
-    //           "h265"
-    //         ],
-    //         "type": "stream",
-    //         "region": "ap-southeast-1",
-    //         "priority": 1
-    //       },
-    //       {
-    //         "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/manifest.mpd",
-    //         "support": "mpd",
-    //         "codec": [
-    //           "h264",
-    //           "h265"
-    //         ],
-    //         "type": "stream",
-    //         "region": "ap-southeast-1",
-    //         "priority": 1
-    //       }
-    //     ]
-    //   }
-    // }
+    {
+      "id": "110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2",
+      "name": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
+      "description": null,
+      "shortDescription": null,
+      "inputType": "http",
+      "url": "https://www.youtube.com/watch?v=tB4JLFz28Ts",
+      "masterTaskId": "4e93fc9e-6b82-4f06-a816-e14b030288a1",
+      "masterProgress": "success",
+      "standardTaskId": "416a67b8-e479-48b4-84a0-cfaf493f2f07",
+      "standardProgress": "success",
+      "view": 0,
+      "poster": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
+      "thumbnail": "http://azui01-static.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-static/2018/09/22/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/thumbnail-10-8-720.jpeg",
+      "type": "vod",
+      "status": 2,
+      "duration": "483.392000",
+      "readyToPublish": "on",
+      "embedMetadata": null,
+      "extendMetadataId": null,
+      "publishToCdn": "success",
+      "extendMetadata": null,
+      "createdAt": "2018-09-22T12:21:09.000Z",
+      "updatedAt": "2018-09-22T12:21:09.000Z",
+      "publishStatus": {progress: 100, status: "success"},
+      "linkplay": {
+        "urls": [
+          {
+            "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/playlist.m3u8",
+            "support": "hls",
+            "codec": [
+              "h264",
+              "h265"
+            ],
+            "type": "stream",
+            "region": "ap-southeast-1",
+            "priority": 1
+          },
+          {
+            "url": "http://azui01-vod.uizacdn.net/4b225efbe2fc4cc7826327fbb21aaab5-stream/110ea40a-58bd-45a3-ba1e-c3f0c0cef9c2/package/manifest.mpd",
+            "support": "mpd",
+            "codec": [
+              "h264",
+              "h265"
+            ],
+            "type": "stream",
+            "region": "ap-southeast-1",
+            "priority": 1
+          }
+        ]
+      }
+    }
   ];
   @Input() settings: any = {
     emptyContent: null,

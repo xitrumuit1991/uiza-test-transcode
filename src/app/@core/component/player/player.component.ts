@@ -56,13 +56,17 @@ export class UizaPlayerComponent implements OnInit {
     let url;
 
     if (typeof this.options.mode !== 'undefined' && this.options.mode === 'preview') {
-      url = `https://${this.DOMAIN_SDK}/#/preview/null/embed?iframeId=iframe-null&env=${this.options.env}&version=3&api=${this.options.api}&token=${this.options.token}`;
+      // url = `https://${this.DOMAIN_SDK}/#/preview/null/embed?iframeId=iframe-null&env=${this.options.env}&version=3&api=${this.options.api}&token=${this.options.token}`;
+      url = `http://${this.DOMAIN_SDK}/#/preview/null/embed?iframeId=iframe-null&env=${this.options.env}&version=3&api=${this.options.api}&token=${this.options.token}`;
     } else if (this.options.streamType === 'url') {
-      url = `https://${this.DOMAIN_SDK}/#/url/?iframeId=iframe-${this.options.entityId}&version=3&url=${escape(this.options.url)}`;
+      // url = `https://${this.DOMAIN_SDK}/#/url/?iframeId=iframe-${this.options.entityId}&version=3&url=${escape(this.options.url)}`;
+      url = `http://${this.DOMAIN_SDK}/#/url/?iframeId=iframe-${this.options.entityId}&version=3&url=${escape(this.options.url)}`;
     } else if (this.options.streamType === 'vod') {
-      url = `https://${this.DOMAIN_SDK}/#/${this.options.appId}/publish/${this.options.entityId}/embed?iframeId=iframe-${this.options.entityId}&env=${this.options.env}&version=3&api=${this.options.api}&token=${this.options.token}`;
+      // url = `https://${this.DOMAIN_SDK}/#/${this.options.appId}/publish/${this.options.entityId}/embed?iframeId=iframe-${this.options.entityId}&env=${this.options.env}&version=3&api=${this.options.api}&token=${this.options.token}`;
+      url = `http://${this.DOMAIN_SDK}/#/${this.options.appId}/publish/${this.options.entityId}/embed?iframeId=iframe-${this.options.entityId}&env=${this.options.env}&version=3&api=${this.options.api}&token=${this.options.token}`;
     } else {
-      url = `https://${this.DOMAIN_SDK}/#/${this.options.appId}/live/${this.options.entityId}/embed?iframeId=iframe-${this.options.entityId}&streamName=${this.options.streamName}&region=${this.options.region}&feedId=${this.options.feedId}&env=${this.options.env}&version=3&native=true&showCCU=true&token=${this.options.token}&api=${this.options.api}`;
+      // url = `https://${this.DOMAIN_SDK}/#/${this.options.appId}/live/${this.options.entityId}/embed?iframeId=iframe-${this.options.entityId}&streamName=${this.options.streamName}&region=${this.options.region}&feedId=${this.options.feedId}&env=${this.options.env}&version=3&native=true&showCCU=true&token=${this.options.token}&api=${this.options.api}`;
+      url = `http://${this.DOMAIN_SDK}/#/${this.options.appId}/live/${this.options.entityId}/embed?iframeId=iframe-${this.options.entityId}&streamName=${this.options.streamName}&region=${this.options.region}&feedId=${this.options.feedId}&env=${this.options.env}&version=3&native=true&showCCU=true&token=${this.options.token}&api=${this.options.api}`;
     }
     if (typeof this.options.playerId !== 'undefined') {
       url += `&playerId=${this.options.playerId}`;
@@ -88,8 +92,10 @@ export class UizaPlayerComponent implements OnInit {
     }
 
     if (this.options.includeJs) {
-      $('head').append(`<script src='https://${this.DOMAIN_SDK}/iframe_api.js'/></script>`);
-      iframe += `<script src='https://${this.DOMAIN_SDK}/iframe_api.js'/></script>`;
+      //$('head').append(`<!--<script src='https://${this.DOMAIN_SDK}/iframe_api.js'/></script>-->`);
+      //iframe += `<script src='https://${this.DOMAIN_SDK}/iframe_api.js'/></script>`;
+      $('head').append(`<script src='http://${this.DOMAIN_SDK}/iframe_api.js'/></script>`);
+      iframe += `<script src='http://${this.DOMAIN_SDK}/iframe_api.js'/></script>`;
     }
 
     return iframe;
