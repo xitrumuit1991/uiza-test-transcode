@@ -462,13 +462,13 @@ export class UizaTestTranscodeComponent implements OnInit {
       history.go(1);
     };
 
-    history.pushState(null, document.title, location.href);
+    /*history.pushState(null, document.title, location.href);
     window.addEventListener('popstate', function (event)
     {
       // console.log('can not history back; event=',event);
       // console.log('document.title', document.title, location.href);
       history.pushState(null, document.title, location.href);
-    });
+    });*/
   }
   startIntervalGetStatus() {
     this.dontAllowHistoryBack();
