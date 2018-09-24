@@ -225,6 +225,27 @@ export class UizaTestTranscodeComponent implements OnInit {
   onInputFileChange(event) {
     this.file = event.target.files[0];
     console.log('file select', this.file);
+    let fileReader = new FileReader();
+    if(this.file){
+      fileReader.onload = (e) => {
+        this.arrayBuffer = fileReader.result;
+        if (this.arrayBuffer) {
+          let data = new Uint8Array(this.arrayBuffer);
+          let arr = new Array();
+          for (let i = 0; i !== data.length; ++i)
+            arr[i] = String.fromCharCode(data[i]);
+          let bstr = arr.join("");
+          let workbook = XLSX.read(bstr, {type: "binary"});
+          let first_sheet_name = workbook.SheetNames[0];
+          let worksheet = workbook.Sheets[first_sheet_name];
+          this.data = XLSX.utils.sheet_to_json(worksheet, {raw: true});
+          console.log(this.data);
+          this.utilService.notifySuccess(`Import ${this.data.length} item success`);
+        }
+      };
+      fileReader.readAsArrayBuffer(this.file);
+    }
+    this.dontAllowHistoryBack();
   }
 
   uploadExcelFile() {
@@ -238,24 +259,25 @@ export class UizaTestTranscodeComponent implements OnInit {
       return this.utilService.notifyError('Only support staging or production');
     }
     if (!this.file) return this.utilService.notifyError('select file');
-    fileReader.onload = (e) => {
-      this.arrayBuffer = fileReader.result;
-      if (this.arrayBuffer) {
-        let data = new Uint8Array(this.arrayBuffer);
-        let arr = new Array();
-        for (let i = 0; i !== data.length; ++i)
-          arr[i] = String.fromCharCode(data[i]);
-        let bstr = arr.join("");
-        let workbook = XLSX.read(bstr, {type: "binary"});
-        let first_sheet_name = workbook.SheetNames[0];
-        let worksheet = workbook.Sheets[first_sheet_name];
-        this.data = XLSX.utils.sheet_to_json(worksheet, {raw: true});
-        console.log(this.data);
-        this.utilService.notifySuccess(`Import ${this.data.length} item success`);
-        this.startProcess();
-      }
-    };
-    fileReader.readAsArrayBuffer(this.file);
+    this.startProcess();
+    // fileReader.onload = (e) => {
+    //   this.arrayBuffer = fileReader.result;
+    //   if (this.arrayBuffer) {
+    //     let data = new Uint8Array(this.arrayBuffer);
+    //     let arr = new Array();
+    //     for (let i = 0; i !== data.length; ++i)
+    //       arr[i] = String.fromCharCode(data[i]);
+    //     let bstr = arr.join("");
+    //     let workbook = XLSX.read(bstr, {type: "binary"});
+    //     let first_sheet_name = workbook.SheetNames[0];
+    //     let worksheet = workbook.Sheets[first_sheet_name];
+    //     this.data = XLSX.utils.sheet_to_json(worksheet, {raw: true});
+    //     console.log(this.data);
+    //     this.utilService.notifySuccess(`Import ${this.data.length} item success`);
+    //     this.startProcess();
+    //   }
+    // };
+    // fileReader.readAsArrayBuffer(this.file);
   }
 
   ngOnInit() {
@@ -432,7 +454,24 @@ export class UizaTestTranscodeComponent implements OnInit {
     });
   }
 
+  dontAllowHistoryBack(){
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      // console.log('can not history back');
+      // console.log('document.title', document.title, location.href);
+      history.go(1);
+    };
+
+    history.pushState(null, document.title, location.href);
+    window.addEventListener('popstate', function (event)
+    {
+      // console.log('can not history back; event=',event);
+      // console.log('document.title', document.title, location.href);
+      history.pushState(null, document.title, location.href);
+    });
+  }
   startIntervalGetStatus() {
+    this.dontAllowHistoryBack();
     if (this.idInterval) clearInterval(this.idInterval);
     this.idInterval = setInterval(async () => {
       console.log('start interval');
@@ -458,7 +497,7 @@ export class UizaTestTranscodeComponent implements OnInit {
           }
         }
       }
-    }, 5000);
+    }, 7000);
   }
 
   viewPlayer(data) {
